@@ -1,0 +1,49 @@
+.endOfPage {
+  height: 7rem;
+  width: 100%;
+  background-color: whitesmoke;
+  border-top: 1px solid rgb(255, 72, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+input[type="text"] {
+  width: 12rem;
+  height: 1rem;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url("Assets/search-icon-png-5.png");
+  background-size: 1rem 1rem;
+  background-position: 0.8rem 0.3rem;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  margin-top: 5rem;
+}
+
+.searchBar {
+  width: 77.5rem;
+  height: 7rem;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+}
+
+.footerListContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.1rem;
+}
+
+.footerList {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}

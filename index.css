@@ -10,34 +10,6 @@ body {
   padding-right: 6rem;
 }
 
-.topnav {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  overflow: hidden;
-  background-color: rgb(255, 72, 0);
-  height: 2rem;
-}
-
-.topnav a {
-  float: left;
-  color: black;
-  text-align: center;
-  padding: 1rem;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: white;
-  color: black;
-}
-
-.topnav a.active {
-  background-color: black;
-  color: white;
-}
-
 .newsContainer {
   display: flex;
   justify-content: center;
@@ -45,29 +17,4 @@ body {
   background-color: beige;
   height: 100vh;
   width: 100%;
-}
-
-.endOfPage {
-  height: 7rem;
-  width: 100%;
-  background-color: whitesmoke;
-  border-top: 1px solid rgb(255, 72, 0);
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-}
-
-input[type="text"] {
-  width: 10rem;
-  height: 2.5rem;
-  box-sizing: border-box;
-  border: 1px solid black;
-  border-radius: 4px;
-  font-size: 16px;
-  background-color: white;
-  background-image: url("Assets/search-icon-png-5.png");
-  background-size: 1rem 1rem;
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  padding: 12px 20px 12px 40px;
 }
