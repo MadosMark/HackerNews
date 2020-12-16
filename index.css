@@ -46,3 +46,28 @@ body {
   height: 100vh;
   width: 100%;
 }
+
+.endOfPage {
+  height: 7rem;
+  width: 100%;
+  background-color: whitesmoke;
+  border-top: 1px solid rgb(255, 72, 0);
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+input[type="text"] {
+  width: 10rem;
+  height: 2.5rem;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url("Assets/search-icon-png-5.png");
+  background-size: 1rem 1rem;
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+}
