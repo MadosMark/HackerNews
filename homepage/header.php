@@ -1,7 +1,4 @@
-<?php
-// Always start by loading the default application setup.
-require __DIR__ . '/../web/autoload.php';
-?>
+<?php require __DIR__ . '/../web/autoload.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,5 +10,4 @@ require __DIR__ . '/../web/autoload.php';
     <link rel="stylesheet" href="/CSS Assests/index.css">
     <link rel="stylesheet" href="/CSS Assests/navBar.css">
     <link rel="stylesheet" href="/CSS Assests/footer.css">
-
 </head>

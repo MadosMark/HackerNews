@@ -87,10 +87,10 @@ function createUser($pdo, $username, $first_name, $last_name, $email, $password,
     redirect("/index.php");
 }
 
-function confirmUser(PDO $pdo)
+function confirmUser($pdo)
 {
     if (isset($_SESSION['user']['id'])) {
-        $user = fetchUser($pdo, (int) $_SESSION['user']['id']);
+        $user = fetchUser($pdo, $_SESSION['user']['id']);
 
         return $user;
     } else {
@@ -98,7 +98,7 @@ function confirmUser(PDO $pdo)
     }
 }
 
-function fetchUser(PDO $pdo, int $id)
+function fetchUser($pdo, $id)
 {
     $statement = $pdo->prepare('SELECT * FROM Users WHERE id = ?');
 
@@ -107,12 +107,19 @@ function fetchUser(PDO $pdo, int $id)
     return $statement->fetch(PDO::FETCH_ASSOC);
 }
 
-function fetchUserByUsername(PDO $pdo, string $username)
+function fetchUserByUsername($pdo, $username)
 {
     $statement = $pdo->prepare('SELECT id, first_name, last_name, avatar, biography, username
     FROM Users WHERE username = ?');
 
     $statement->execute([$username]);
+
+    return $statement->fetch(PDO::FETCH_ASSOC);
+}
+
+function checkIfExists(PDOStatement $statement, string $userInput)
+{
+    $statement->execute([$userInput]);
 
     return $statement->fetch(PDO::FETCH_ASSOC);
 }

@@ -71,4 +71,4 @@ if (isset($_GET['username'])) {
 
 </section>
 
-<?php require __DIR__ . '/views/footer.php'; ?>
+<?php require __DIR__ . '/homepage/footer.php'; ?>
