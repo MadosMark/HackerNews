@@ -1,4 +1,3 @@
-<?php require __DIR__ . '/web/autoload.php'; ?>
 <?php require __DIR__ . '/homepage/header.php'; ?>
 <?php require __DIR__ . '/homepage/navbar.php'; ?>
 

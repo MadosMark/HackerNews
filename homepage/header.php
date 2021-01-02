@@ -1,3 +1,8 @@
+<?php
+// Always start by loading the default application setup.
+require __DIR__ . '/../web/autoload.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

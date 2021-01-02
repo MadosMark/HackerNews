@@ -86,3 +86,33 @@ function createUser($pdo, $username, $first_name, $last_name, $email, $password,
     echo $message; */
     redirect("/index.php");
 }
+
+function confirmUser(PDO $pdo)
+{
+    if (isset($_SESSION['user']['id'])) {
+        $user = fetchUser($pdo, (int) $_SESSION['user']['id']);
+
+        return $user;
+    } else {
+        redirect('/loginPage.php');
+    }
+}
+
+function fetchUser(PDO $pdo, int $id)
+{
+    $statement = $pdo->prepare('SELECT * FROM Users WHERE id = ?');
+
+    $statement->execute([$id]);
+
+    return $statement->fetch(PDO::FETCH_ASSOC);
+}
+
+function fetchUserByUsername(PDO $pdo, string $username)
+{
+    $statement = $pdo->prepare('SELECT id, first_name, last_name, avatar, biography, username
+    FROM Users WHERE username = ?');
+
+    $statement->execute([$username]);
+
+    return $statement->fetch(PDO::FETCH_ASSOC);
+}
