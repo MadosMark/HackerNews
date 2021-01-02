@@ -39,8 +39,80 @@ $user = confirmUser($pdo);
         </div>
     </article>
 
-    <form action="app/users/logout.php" class="logout">
-        <button type="submit" class="button">Logout</button>
+    <article class="settings__menu__item change-password">
+        <h2>Change password</h2>
+
+
+        <?php if (isset($_SESSION['PASSWORD_SUCCESS'])) { ?>
+            <p> <?php echo $_SESSION['PASSWORD_SUCCESS'][0];
+                unset($_SESSION['PASSWORD_SUCCESS']); ?>
+            <?php } else if (isset($_SESSION['CURRENT_PASSWORD_INVALID'])) { ?>
+                <p> <?php echo $_SESSION['CURRENT_PASSWORD_INVALID'][0];
+                    unset($_SESSION['CURRENT_PASSWORD_INVALID']);
+                } ?> </p>
+
+                <?php if (isset($_SESSION['PASSWORD_SHORT'])) { ?>
+                    <p> <?php echo $_SESSION['PASSWORD_SHORT'][0];
+                        unset($_SESSION['PASSWORD_SHORT']);
+                    } ?> <p>
+
+                        <?php if (isset($_SESSION['PASSWORD_NOT_SAME'])) { ?>
+                            <p> <?php echo $_SESSION['PASSWORD_NOT_SAME'][0];
+                                unset($_SESSION['PASSWORD_NOT_SAME']);
+                            } ?> <p>
+
+
+                                <div class="settings__menu__item--active change-password--active hidden">
+                                    <div class="message hidden">
+                                        <p></p>
+                                    </div>
+
+                                    <form action="web/user/password.php" method="post" class="form change-password__form">
+                                        <div class="form__group">
+                                            <label for="current_password">Current password</label>
+                                            <input type="password" name="current_password" placeholder="Type in your current password" required>
+                                        </div>
+
+                                        <div class="form__group">
+                                            <label for="new_password">New password</label>
+                                            <input type="password" name="new_password" placeholder="Type in your new password" required>
+                                        </div>
+
+                                        <div class="form__group">
+                                            <label for="confirm_password">Confirm password</label>
+                                            <input type="password" name="confirm_password" placeholder="Confirm your new password" required>
+                                        </div>
+
+                                        <button type="submit" class="button">Save</button>
+                                    </form>
+                                </div>
+    </article>
+
+    <article class="settings__menu__item change-biography">
+        <h2>Edit biography</h2>
+
+        <?php if (isset($_SESSION['BIO_SUCCESS'])) { ?>
+            <p> <?php echo $_SESSION['BIO_SUCCESS'][0];
+                unset($_SESSION['BIO_SUCCESS']);
+            } ?> <p>
+
+                <div class="settings__menu__item--active change-biography--active hidden">
+                    <div class="message hidden">
+                        <p></p>
+                    </div>
+
+                    <form action="web/user/biography.php" method="post" class="form change-biography__form">
+                        <div class="form__group">
+                            <textarea name="biography" id="biography" cols="30" rows="10" placeholder="Edit your biography here"><?php echo $user['biography'] ?></textarea>
+                        </div>
+
+                        <button type="submit" class="button">Save</button>
+                    </form>
+                </div>
+    </article>
+
+    <form action="web/user/logout.php" class="logout">
+        <button type="submit" class="button">Log Out</button>
     </form>
 </section>
 
