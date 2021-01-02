@@ -9,7 +9,7 @@
   padding: 1rem;
 }
 
-input[type="text"] {
+.searchBarMain input {
   width: 12rem;
   height: 1rem;
   box-sizing: border-box;
@@ -17,7 +17,7 @@ input[type="text"] {
   border-radius: 4px;
   font-size: 16px;
   background-color: white;
-  background-image: url("Assets/search-icon-png-5.png");
+  background-image: url("/Assets/search-icon-png-5.png");
   background-size: 1rem 1rem;
   background-position: 0.8rem 0.3rem;
   background-repeat: no-repeat;
