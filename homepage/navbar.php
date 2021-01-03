@@ -13,28 +13,26 @@
             </li>
             <?php if (isset($_SESSION['user'])) : ?>
 
-                <div class="rightNav">
+                <li class="nav-item">
+                    <a href="/profile.php?username=<?php echo $_SESSION['user']['username']; ?>"> <?php echo $_SESSION['user']['username']; ?> </a>
+                </li>
+
+                <?php if (isset($_SESSION['user'])) : ?>
                     <li class="nav-item">
-                        <a href="/profile.php?username=<?php echo $_SESSION['user']['username']; ?>"> <?php echo $_SESSION['user']['username']; ?> </a>
+                        <a href="web/user/logout.php">Log Out</a>
                     </li>
-
-                    <?php if (isset($_SESSION['user'])) : ?>
-                        <li class="nav-item">
-                            <a href="web/user/logout.php">Log Out</a>
-                        </li>
-                    <?php endif; ?>
-
-                <?php else : ?>
-                    <li class="nav-item">
-                        <a href="loginPage.php">Log In</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="signUp.php">Sign up</a>
-                    </li>
-
                 <?php endif; ?>
-                </div>
+
+            <?php else : ?>
+                <li class="nav-item">
+                    <a href="loginPage.php">Log In</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="signUp.php">Sign up</a>
+                </li>
+
+            <?php endif; ?>
 
         </ul>
     </div>

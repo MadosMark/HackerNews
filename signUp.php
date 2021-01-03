@@ -1,10 +1,6 @@
-<?php require __DIR__ . '/web/autoload.php'; ?>
 <?php require __DIR__ . '/homepage/header.php'; ?>
 <?php require __DIR__ . '/homepage/navbar.php'; ?>
 <?php require __DIR__ . '/homepage/signUpHeader.php'; ?>
-
-
-
 
 <div class="wrapper">
     <h2>Sign Up</h2>

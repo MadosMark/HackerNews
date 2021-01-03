@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 require __DIR__ . '/homepage/header.php';
+require __DIR__ . '/homepage/navbar.php';
 
 
 $user = confirmUser($pdo);
@@ -11,6 +12,25 @@ $user = confirmUser($pdo);
 
 
 <section class="settings section">
+
+    <article class="settings__menu__item change-avatar">
+        <h2>Change profile picture</h2>
+
+        <div class="settings__menu__item--active change-avatar--active hidden">
+
+            <img width="200px" height="200px" src="<?php echo ($user['avatar'] !== null) ? "/uploads/avatars/" . $user['avatar'] : 'assets/images/avatar.png'; ?>" id="avatar-image" alt="Avatar image">
+
+            <form action="web/user/avatar.php" method="post" enctype="multipart/form-data" class="form change-avatar__form">
+                <div class="form__group">
+                    <input class="form-control" type="file" accept="image/jpeg,image/png" name="avatar" id="avatar" required>
+                </div>
+
+                <button type="submit" class="button">Upload</button>
+            </form>
+        </div>
+    </article>
+
+
     <article class="settings__menu__item change-email">
         <h2>Change email</h2>
 
