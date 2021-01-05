@@ -98,13 +98,15 @@ function confirmUser($pdo)
     }
 }
 
-function fetchUser($pdo, $id)
+function fetchUser($pdo, $username)
 {
-    $statement = $pdo->prepare('SELECT * FROM Users WHERE id = ?');
+    $statement = $pdo->prepare("SELECT id, username, avatar, biography FROM Users WHERE username = :username");
+    $statement->BindParam(':username', $username, PDO::PARAM_STR);
+    $statement->execute();
 
-    $statement->execute([$id]);
+    $userProfile =  $statement->fetch(PDO::FETCH_ASSOC);
 
-    return $statement->fetch(PDO::FETCH_ASSOC);
+    return $userProfile;
 }
 
 function fetchUserByUsername($pdo, $username)
@@ -122,4 +124,56 @@ function checkIfExists(PDOStatement $statement, string $userInput)
     $statement->execute([$userInput]);
 
     return $statement->fetch(PDO::FETCH_ASSOC);
+}
+
+function errorMessage()
+{
+    if (isset($_SESSION['errors'])) {
+        foreach ($_SESSION['errors'] as $error) {
+            echo $error;
+        }
+    }
+}
+
+function getUserPosts($pdo, int $profileId)
+{
+    $_SESSION['errors'] = [];
+
+    $statement = $pdo->prepare("SELECT Posts.id, title, description, post_url, post_date, user_id FROM Posts
+    INNER JOIN Users
+    ON Posts.user_id = Users.id
+    WHERE Users.id = :id
+    ORDER BY Posts.id DESC");
+
+    $statement->BindParam(':id', $profileId, PDO::PARAM_INT);
+    $statement->execute();
+
+    $userPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    if (!$userPosts) {
+        return $_SESSION['errors'][] = "No posts yet.";
+    }
+
+    return $userPosts;
+}
+
+
+function getAllPosts($pdo, $allPosts)
+{
+
+    $_SESSION['errors'] = [];
+
+    $statement = $pdo->prepare("SELECT * FROM Posts
+    ORDER BY Posts.post_date DESC");
+
+    $statement->execute();
+
+    $allPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+    if (!$allPosts) {
+        return  $_SESSION['errors'][] = "Ops, could not find posts";
+    }
+
+    return $allPosts;
 }
