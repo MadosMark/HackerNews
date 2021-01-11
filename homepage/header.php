@@ -13,5 +13,5 @@
     <link rel="stylesheet" href="/css assests/profile.css">
     <link rel="stylesheet" href="/css assests/settings.css">
     <link rel="stylesheet" href="/css assests/signUp.css">
-
+    <link rel="stylesheet" href="/css assests/loginPage.css">
 </head>

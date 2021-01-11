@@ -1,25 +1,17 @@
 <?php require __DIR__ . '/homepage/header.php'; ?>
 <?php require __DIR__ . '/homepage/navbar.php'; ?>
 
-<section>
-    <h1> Log In</h1>
-
+<div class="login_container">
+    <h1 class="login_title"> Log In</h1>
     <form action="/web/user/login.php" method="post">
-        <div class="form-group">
+        <div class="login_form">
             <label for="email">Email:</label>
-            <input class="form-control" type="email" name="email" id="email" placeholder="Enter email here" required>
-
-        </div>
-        <div class="form-group">
+            <input type="email" name="email" id="email" placeholder="Enter email" required>
             <label for="password">Password:</label>
-            <input class="form-control" type="password" name="password" id="password" placeholder="Enter password here" required>
-
+            <input type="password" name="password" id="password" placeholder="Enter password" required>
+            <button type="submit" class="login_button">Log in</button>
         </div>
-
-        <button type="submit" class="btn btn-primary">Log in</button>
     </form>
-
-
-</section>
+</div>
 
 <?php require __DIR__ . '/homepage/footer.php'; ?>

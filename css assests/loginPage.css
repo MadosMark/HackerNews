@@ -1,0 +1,29 @@
+.login_container {
+  background-color: beige;
+  height: 80vh;
+}
+
+.login_title {
+  font-size: 2rem;
+  margin-top: 0rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+}
+
+.login_form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login_button {
+  font-size: 1rem;
+  height: 1.5rem;
+  border: solid 1px rgb(255, 100, 28);
+  border-radius: 0.2rem;
+  width: 7rem;
+  margin: 2rem;
+}
