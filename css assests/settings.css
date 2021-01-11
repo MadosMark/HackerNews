@@ -1,86 +1,78 @@
-/* .settings__menu {
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-  background-color: #ffffff;
-  border-radius: 6px;
-  padding: 5%;
-  margin-bottom: 5%;
+.settings_container {
+  background-color: beige;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 112vh;
 }
 
-.settings__menu__item h2 {
-  margin: 0;
-  padding: 4% 0 3%;
-  font-weight: 600;
-  font-size: 1.1em;
-  color: #1d1d1d;
-  border-bottom: 1px solid #94949465;
+.settings_title {
+  font-size: 1.5rem;
+  justify-content: center;
+  display: flex;
 }
 
-.settings__menu__item--active {
-  width: 100%;
-  border-bottom: 1px solid #94949465;
-  padding: 6% 0;
+.button_settings {
+  font-size: 1rem;
+  height: 1.5rem;
+  border: solid 1px rgb(255, 100, 28);
+  border-radius: 0.2rem;
+  margin-bottom: 0.3rem;
+  margin-right: 0.3rem;
+  width: 6rem;
+  margin: 1rem;
 }
 
-.change-avatar--active {
+.settings_image {
+  height: 20rem;
+  width: 20rem;
+  border-radius: 10rem;
+  margin-bottom: 1rem;
+}
+
+.settings_image_container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
-.change-avatar--active img {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 100%;
-  margin-bottom: 5%;
+.settings_email_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.change-avatar__form {
-  width: 100%;
+.settings_new_email {
+  margin-top: -3rem;
 }
 
-.change-email p,
-.change-username p {
-  margin-top: 0;
-  font-size: 0.9em;
+.settings_password_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.settings .form__group {
-  padding-bottom: 5%;
+.settings_password_renewal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: -3rem;
 }
 
-.settings .message {
-  min-height: 50px;
-  border-radius: 0;
-  width: 100%;
-  margin-bottom: 5%;
+.settings_biography_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.settings button:not(.delete-account__button, .delete__form__buttons .button) {
-  margin-top: 5%;
+.settings_biography_buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-
-.settings label {
-  font-size: 0.9em;
-}
-
-.delete-account__form label {
-  color: black;
-}
-
-.delete-account__form p {
-  width: 40%;
-}
-
-.delete-account__button {
-  margin-top: 0;
-  background-color: #b40021d0;
-}
-
-.logout {
-  margin-bottom: 5%;
-}
-
-.hidden {
-  display: none;
-} */
