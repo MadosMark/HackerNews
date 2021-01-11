@@ -25,7 +25,7 @@ if (isset($_SESSION['user'])) : ?>
                     <h3 class="index_post_title"> <?php echo $post['title']; ?> </h3>
                 </div>
                 <div>
-                    <p class="post-description"> <?php echo $post['description']; ?> </p>
+                    <p> <?php echo $post['description']; ?> </p>
                 </div>
                 <div>
                     <a href="<?php echo $post['post_url'] ?> "> <?php echo $post['post_url']; ?> </a>

@@ -1,34 +1,10 @@
-.topnav {
+.top_nav {
   display: flex;
   align-items: center;
   flex-direction: row;
   width: 100%;
-  /* overflow: hidden; */
   background-color: rgb(255, 72, 0);
   height: 2rem;
-}
-/* 
-.topnav a {
-  
-  color: black;
-  text-align: center;
-  padding: 1rem;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: white;
-  color: black;
-}
-
-.topnav a.active {
-  background-color: black;
-  color: white;
-} */
-
-.topnav {
-  display: flex;
 }
 
 ul {
@@ -36,4 +12,23 @@ ul {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+}
+
+.page_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  border: solid 1px white;
+  box-shadow: 1px 1px 1px 0.5px black;
+  height: 2rem;
+  width: 8rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
 }
