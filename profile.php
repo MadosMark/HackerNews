@@ -3,103 +3,58 @@
 
 
 
-<?php if (isset($_SESSION['errors'])) {  ?>
-    <p class="error-message"> <?php errorMessage();
-                                unset($_SESSION['errors']); //delete error message after displayed
-                            } ?> </p>
-
-    <?php
 
 
-    if (isset($_GET['username'])) {
-        $username = filter_var($_GET['username'], FILTER_SANITIZE_STRING);
+<?php if (isset($_GET['username'])) {
+    $username = filter_var($_GET['username'], FILTER_SANITIZE_STRING);
+    $userProfile = fetchUser($pdo, $username);
+    $profileId = $userProfile['id'];
+    $userPosts = getUserPosts($pdo, $profileId);
+} ?>
 
 
-        $userProfile = fetchUser($pdo, $username);
+<div>
 
 
-        $profileId = $userProfile['id'];
-        $userPosts = getUserPosts($pdo, $profileId);
-    }
+    <article class="profile_container">
+        <div class="profile_page">
+            <div class="profile_image">
+                <h1 class="profile_username"><?php echo $userProfile['username']; ?> </h1>
+                <textarea cols="40" rows="5" class="profile_biography"> <?php echo $userProfile['biography']; ?> </textarea>
+                <img class="p_image" src="<?php echo ($userProfile['avatar'] !== null) ? "/uploads/avatars/" . $userProfile['avatar'] : 'assets/images/avatar.png'; ?>" id="avatar-image" alt="Avatar image">
+            </div>
+        </div>
 
-    ?>
+        <?php if ($profileId === $_SESSION['user']['id']) : ?>
+            <a href="settings.php?username=<?php echo $_SESSION['user']['username']; ?> "> <button class="edit_profile">Edit profile</button> </a>
+        <?php endif; ?>
+    </article>
 
 
-    <div style="background-color: green; display: flex;">
 
+    <h2 class="user_post_title"> Posts </h2>
 
-        <article class="profile-container">
-            <div class="profile-page">
-                <div class="profile-img-container">
-                    <img width="200px" height="200px" src="<?php echo ($userProfile['avatar'] !== null) ? "/uploads/avatars/" . $userProfile['avatar'] : 'assets/images/avatar.png'; ?>" id="avatar-image" alt="Avatar image">
-                    <h1 class="profile-title"><?php echo $userProfile['username']; ?> </h1>
-                    <p class="biography"> <?php echo $userProfile['biography']; ?> </p>
+    <?php if (is_array($userPosts)) {
+        foreach ($userPosts as $userPost) :  ?>
+
+            <div class="posts_container">
+                <div class="user_posts">
+                    <h3 class="post_title"> <?php echo $userPost['title']; ?> </h3>
+                    <p> <?php echo $userPost['description']; ?> </p>
+                    <a href="<?php echo $userPost['post_url'] ?> "> <?php echo $userPost['post_url']; ?> </a>
+                    <p> Posted by: <?php echo $userPost['id']; ?> </p>
+                    <p> <?php echo $userPost['post_date']; ?> </p>
                 </div>
             </div>
-
-            <?php // Check if user logged in is the owner of this profile page. 
-            // If it is, show button for settings. 
-
-            if ($profileId === $_SESSION['user']['id']) : ?>
-
-                <a href="settings.php?username=<?php echo $_SESSION['user']['username']; ?> "> <button class="edit-profile">Edit profile</button> </a>
-
+            <?php if ($profileId === $_SESSION['user']['id']) : ?>
+                <button class="edit_post">Edit post</button>
             <?php endif; ?>
-        </article>
-
-        <!-- TO DO: 
-        Javascript eventlistener for button. Redirect to settings page. 
-        Settings page: upload profle photo
-        Edit bio, username . 
-            -->
+    <?php endforeach;
+    } ?>
+</div>
 
 
 
 
 
-        <h2 class="u-posts"> Posts </h2>
-
-        <?php if (is_array($userPosts)) {
-            foreach ($userPosts as $userPost) :  ?>
-
-                <article class="user-posts">
-                    <div class="posts-wrapper">
-                        <div class="post-item">
-                            <h3 class="post-title"> <?php echo $userPost['title']; ?> </h3>
-                        </div>
-                        <div class="post-item">
-                            <p class="post-description"> <?php echo $userPost['description']; ?> </p>
-                        </div>
-                        <div class="post-item">
-                            <a href="<?php echo $userPost['post_url'] ?> "> <?php echo $userPost['post_url']; ?> </a>
-                        </div>
-                        <div class="post-item-author">
-                            <p> Posted by: <?php echo $userPost['id']; ?> </p>
-
-                        </div>
-                        <div class="post-item-date">
-                            <p> <?php echo $userPost['post_date']; ?> </p>
-                        </div>
-                    </div>
-                    <?php if ($profileId === $_SESSION['user']['id']) : ?>
-
-                        <button class="edit-post">Edit post</button>
-
-                    <?php endif; ?>
-
-                </article>
-
-
-        <?php endforeach;
-        } ?>
-
-
-
-
-    </div>
-
-
-
-
-
-    <?php require __DIR__ . '/homepage/footer.php'; ?>
+<?php require __DIR__ . '/homepage/footer.php'; ?>
