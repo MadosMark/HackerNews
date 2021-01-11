@@ -157,23 +157,19 @@ function getUserPosts($pdo, int $profileId)
     return $userPosts;
 }
 
-function getAllPosts($pdo)
+function fetchAllPosts($pdo)
 {
 
     $_SESSION['errors'] = [];
 
-    $statement = $pdo->prepare("SELECT * FROM Posts
-    ORDER BY Posts.post_date DESC");
+    $statement = $pdo->prepare("SELECT * FROM Posts ORDER BY Posts.post_date DESC");
 
     $statement->execute();
 
-    $allPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $fetchPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    if (!$allPosts) {
-        return  $_SESSION['errors'][] = "Ops, could not find posts";
-    }
 
-    return $allPosts;
+    return $fetchPosts;
 }
 
 function getPostsComments($pdo, $postId)
@@ -231,18 +227,18 @@ function getPostbyId($pdo, $postId)
     return $post;
 }
 
-function countLikes($pdo, $postId)
+function countUpvotes($pdo, $postId)
 {
     $statement = $pdo->prepare('SELECT COUNT(*) FROM Likes WHERE post_id = :postId');
     $statement->bindParam(':postId', $postId, PDO::PARAM_INT);
     $statement->execute();
 
-    $likes = $statement->fetch(PDO::FETCH_ASSOC);
+    $upvotes = $statement->fetch(PDO::FETCH_ASSOC);
 
-    return $likes['COUNT(*)'];
+    return $upvotes['COUNT(*)'];
 }
 
-function isLikedByUser($pdo, $postId, $userId)
+function upvoteByUser($pdo, $postId, $userId)
 {
 
     $statement = $pdo->prepare('SELECT * FROM Likes WHERE post_id = :postId
@@ -253,9 +249,9 @@ function isLikedByUser($pdo, $postId, $userId)
 
     $statement->execute();
 
-    $isLikedByUser = $statement->fetch(PDO::FETCH_ASSOC);
+    $upvoteByUser = $statement->fetch(PDO::FETCH_ASSOC);
 
-    return $isLikedByUser;
+    return $upvoteByUser;
 }
 
 function updateComment($pdo, int $postId, int $userId, int $commentId, string $comment)
