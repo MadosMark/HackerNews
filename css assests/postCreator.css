@@ -1,0 +1,17 @@
+.create_post_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 80vh;
+  background-color: beige;
+}
+
+.create_post_button {
+  font-size: 1rem;
+  height: 1.5rem;
+  border: solid 1px rgb(255, 100, 28);
+  border-radius: 0.2rem;
+  width: 7rem;
+  margin: 2rem;
+}
