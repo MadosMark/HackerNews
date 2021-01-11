@@ -1,0 +1,14 @@
+.sign-up-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sign-up {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 20rem;
+}

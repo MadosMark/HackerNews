@@ -14,7 +14,9 @@
     if (isset($_GET['username'])) {
         $username = filter_var($_GET['username'], FILTER_SANITIZE_STRING);
 
+
         $userProfile = fetchUser($pdo, $username);
+
 
         $profileId = $userProfile['id'];
         $userPosts = getUserPosts($pdo, $profileId);
@@ -23,17 +25,16 @@
     ?>
 
 
+    <div style="background-color: green; display: flex;">
 
-
-    <section>
 
         <article class="profile-container">
             <div class="profile-page">
                 <div class="profile-img-container">
-                    <!-- <img src="<?php $userProfile['avatar']; ?>" class="profile-img" alt="User profile"> -->
+                    <img width="200px" height="200px" src="<?php echo ($userProfile['avatar'] !== null) ? "/uploads/avatars/" . $userProfile['avatar'] : 'assets/images/avatar.png'; ?>" id="avatar-image" alt="Avatar image">
+                    <h1 class="profile-title"><?php echo $userProfile['username']; ?> </h1>
+                    <p class="biography"> <?php echo $userProfile['biography']; ?> </p>
                 </div>
-                <h1 class="profile-title"><?php echo $userProfile['username']; ?> </h1>
-                <p class="biography"> <?php echo $userProfile['biography']; ?> </p>
             </div>
 
             <?php // Check if user logged in is the owner of this profile page. 
@@ -94,7 +95,8 @@
 
 
 
-    </section>
+
+    </div>
 
 
 

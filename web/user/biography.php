@@ -5,7 +5,7 @@ declare(strict_types=1);
 require __DIR__ . '/../autoload.php';
 
 if (isset($_POST['biography'])) {
-    $biography = trim(filter_var($_POST['biography'], FILTER_SANITIZE_STRING));
+    $biography = filter_var($_POST['biography'], FILTER_SANITIZE_STRING);
 
     $statement = $pdo->prepare('UPDATE Users SET biography = ? WHERE id = ?');
 

@@ -1,34 +1,20 @@
 <?php
 
 declare(strict_types=1);
-
 require __DIR__ . '/../autoload.php';
 
 if (isset($_FILES['avatar'])) {
-    $user = fetchUser($pdo, $_SESSION['user']['id']);
 
+    $user = fetchUser($pdo, $_SESSION['user']['username']);
     $avatar = $_FILES['avatar'];
     $userId = $user['id'];
-    $username = $user['username'];
+    $file_tmp = $_FILES['avatar']['tmp_name'];
     $currentAvatar = $user['avatar'];
-
     $newFileName = $avatar['name'];
     $newFileNameArray = explode('.', $newFileName);
-    $newFileEnd = array_pop($newFileNameArray);
-
-    if ($currentAvatar === null) {
-        $newAvatar = "$username-$userId.$newFileEnd";
-    } else {
-        $currentAvatarArray = explode('.', $currentAvatar);
-        $avatarId = $currentAvatarArray[0];
-        $newAvatar = "$avatarId.$newFileEnd";
-    }
-
-    if ($avatar['type'] !== 'image/png' && $avatar['type'] !== 'image/jpeg') {
-        $_SESSION['avatarInvalidType'][] = "The filetype must be a .jpg, .jpeg or .png.";
-        redirect('/../settings.php');
-        exit;
-    }
+    $file_extention = end($newFileNameArray);
+    $file_name_new = "profile_picture" . $userId . '.' . $file_extention;
+    $file_destination = __DIR__ . '/../../uploads/avatars/' . $file_name_new;
 
     if ($avatar['size'] >= 3145728) {
         $_SESSION['avatarTooBig'][] = "The image is too big!";
@@ -36,10 +22,10 @@ if (isset($_FILES['avatar'])) {
         exit;
     }
 
-    move_uploaded_file($avatar['tmp_name'], __DIR__ . "/../../uploads/avatars/$newAvatar");
-
-    $statement = $pdo->prepare('UPDATE Users SET avatar = ? WHERE id = ?');
-
-    $statement->execute([$newAvatar, $userId]);
+    move_uploaded_file($file_tmp, $file_destination);
+    $statement = $pdo->prepare('UPDATE Users SET avatar = :imagePath WHERE id = :id');
+    $statement->bindParam(':id', $userId);
+    $statement->bindParam(':imagePath', $file_name_new);
+    $statement->execute();
     redirect('/../settings.php');
 }
