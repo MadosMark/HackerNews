@@ -91,6 +91,5 @@ $user = confirmUser($pdo); ?>
     </div>
 </div>
 
-</div>
 
 <?php require __DIR__ . '/homepage/footer.php'; ?>
