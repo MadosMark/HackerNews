@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/web/autoload.php';
+require __DIR__ . '/../autoload.php';
 
 
 
@@ -11,7 +11,7 @@ $_SESSION['successful'] = [];
 $_SESSION['errors'] = [];
 
 
-/* Update comments */
+
 
 if (isset($_POST['comment'], $_POST['post_id'], $_POST['comment_id'])) {
     $postId = (int)$_POST['post_id'];
@@ -31,7 +31,7 @@ if (isset($_POST['comment'], $_POST['post_id'], $_POST['comment_id'])) {
 }
 
 
-/* Update posts */
+
 
 if (isset($_POST['post_id_edit'], $_POST['user_id'], $_POST['title'], $_POST['description'], $_POST['url'])) {
 

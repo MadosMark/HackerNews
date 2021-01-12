@@ -1,0 +1,87 @@
+.comment_form {
+  height: 200vh;
+  background-color: beige;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.post_info {
+  height: 20rem;
+  border: solid 1px black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  width: 30rem;
+}
+
+.comment_title {
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -25rem;
+}
+
+.comment_post {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.comment_button {
+  margin-top: 1rem;
+  font-size: 1rem;
+  height: 1.5rem;
+  border: solid 1px rgb(255, 100, 28);
+  border-radius: 0.2rem;
+  margin-bottom: 0.3rem;
+  margin-right: 0.3rem;
+  width: 8rem;
+}
+
+.user_comments {
+  border: solid 1px black;
+  height: 20rem;
+  width: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.comment_text {
+  font-size: 1.3rem;
+}
+
+.comment_user_title {
+  font-size: 2rem;
+}
+
+.edit_comment {
+  margin-top: 1rem;
+  font-size: 1rem;
+  height: 1.5rem;
+  border: solid 1px rgb(255, 100, 28);
+  border-radius: 0.2rem;
+  margin-bottom: 0.3rem;
+  margin-right: 0.3rem;
+  width: 8rem;
+}
+
+.delete_comment {
+  margin-top: 1rem;
+  font-size: 1rem;
+  height: 1.5rem;
+  border: solid 1px rgb(255, 100, 28);
+  border-radius: 0.2rem;
+  margin-bottom: 0.3rem;
+  margin-right: 0.3rem;
+  width: 9rem;
+}

@@ -13,9 +13,9 @@ if (isset($_POST['post-id'])) {
 
     $_SESSION['errors'] = [];
 
-    $isLikedByUser = isLikedByUser($pdo, $postId, $userId);
+    $upvoteByUser = upvoteByUser($pdo, $postId, $userId);
 
-    if (!is_array($isLikedByUser)) {
+    if (!is_array($upvoteByUser)) {
 
         $statement = $pdo->prepare("INSERT INTO Likes (post_id, user_id) VALUES (:postId, :userId);");
 
@@ -30,7 +30,7 @@ if (isset($_POST['post-id'])) {
 
         redirect("/index");
     } else {
-        /* If user has liked and press like again it deletes the like */
+
         $statement = $pdo->prepare("DELETE FROM Likes WHERE post_id = :postId AND user_id = :userId;");
 
         $statement->BindParam(':postId', $postId);

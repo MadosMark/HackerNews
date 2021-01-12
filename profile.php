@@ -37,6 +37,39 @@
         </div>
         <?php if ($profileId === $_SESSION['user']['id']) : ?>
             <button class="edit_post">Edit post</button>
+            <form class="form-hidden" action="/web/post/update.php" method="post">
+                <input type="hidden" name="post_id_edit" id="post_id_edit" value="<?php echo $postId ?>">
+                <div>
+                    <label for="title"> Title </label>
+                </div>
+                <input type="text" name="title" id="title" placeholder="<?php echo $userPost['title']; ?> " required>
+
+                <div>
+                    <label for="description"> Description </label>
+                </div>
+                <input type="text" name="description" id="description" placeholder="<?php echo $userPost['description']; ?>" required>
+
+                <div>
+                    <label for="url"> Url to the post </label>
+                </div>
+                <input type="url" name="url" id="url" placeholder=" <?php echo $userPost['post_url']; ?>"" required>
+                                   
+                                   
+                                    <div class=" button-wrapper">
+                <div>
+                    <button type=" submit"> Update post </button>
+                </div>
+            </form>
+
+            <form class="form-hidden" action="/web/post/delete.php" method="post">
+
+                <input type="hidden" name="post_id_delete" id="post_id_delete" value="<?php echo $postId ?>">
+
+                <div>
+                    <button type="submit"> Delete post </button>
+                </div>
+                </div>
+            </form>
         <?php endif; ?>
 <?php endforeach;
 } ?>

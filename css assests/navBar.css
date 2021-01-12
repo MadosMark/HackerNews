@@ -12,6 +12,7 @@ ul {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  list-style: none;
 }
 
 .page_title {
@@ -27,8 +28,5 @@ ul {
 
 a {
   text-decoration: none;
-}
-
-ul {
-  list-style: none;
+  color: black;
 }

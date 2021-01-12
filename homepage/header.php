@@ -15,4 +15,5 @@
     <link rel="stylesheet" href="/css assests/signUp.css">
     <link rel="stylesheet" href="/css assests/postCreator.css">
     <link rel="stylesheet" href="/css assests/loginPage.css">
+    <link rel="stylesheet" href="/css assests/comments.css">
 </head>

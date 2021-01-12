@@ -2,11 +2,7 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/web/autoload.php';
-
-
-
-
+require __DIR__ . '/../autoload.php';
 
 
 $_SESSION['successful'] = [];
@@ -23,11 +19,7 @@ if (isset($_POST['post_id'], $_POST['comment_id'], $_POST['user_id_delete_commen
     $_SESSION['successful'][] = "Your comment has been deleted";
 
     redirect("/../comments.php?id=$postId");
-} /* else {
-    $_SESSION['errors'][] = "Something went wrong trying to delete your comment!";
-    redirect("/../comments.php?id=$postId");
 }
-*/
 
 if (isset($_POST['post_id_delete'])) {
     $userId = (int)$_SESSION['user']['id'];
@@ -38,7 +30,7 @@ if (isset($_POST['post_id_delete'])) {
 
     $_SESSION['successful'][] = "Your post has been deleted";
 
-    redirect("/index.php");
+    redirect("/profile.php");
 } else {
     $_SESSION['errors'][] = "Something went wrong trying to delete your post!";
     redirect("/index.php");
