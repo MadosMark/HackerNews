@@ -28,9 +28,9 @@ body {
   margin: 10px;
   margin-bottom: 5px;
   min-height: 15vh;
-  border: solid 1px black;
   padding-bottom: 1.5rem;
   padding-left: 1rem;
+  border: solid 1px black;
 }
 
 .index_title {
@@ -42,7 +42,7 @@ body {
   color: rgb(255, 122, 13);
 }
 
-.vote_button {
+.upvote_button {
   font-size: 1rem;
   height: 1.5rem;
   border: solid 1px rgb(255, 100, 28);
@@ -54,4 +54,7 @@ body {
 
 .index_post_title {
   font-size: 1.5rem;
+}
+
+.welcome_container {
 }

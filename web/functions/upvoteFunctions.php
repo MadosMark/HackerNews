@@ -12,9 +12,8 @@ function countUpvotes($pdo, $postId)
     return $upvotes['COUNT(*)'];
 }
 
-function upvoteByUser($pdo, $postId, $userId)
+function upvoteUser($pdo, $postId, $userId)
 {
-
     $statement = $pdo->prepare('SELECT * FROM Likes WHERE post_id = :postId AND user_id = :userId;');
 
     $statement->bindParam(':postId', $postId);
@@ -22,8 +21,8 @@ function upvoteByUser($pdo, $postId, $userId)
 
     $statement->execute();
 
-    $upvoteByUser = $statement->fetch(PDO::FETCH_ASSOC);
-    return $upvoteByUser;
+    $upvoteUser = $statement->fetch(PDO::FETCH_ASSOC);
+    return $upvoteUser;
 }
 
 function popularUpvotes($pdo)
