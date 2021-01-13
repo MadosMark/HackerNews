@@ -4,7 +4,7 @@
   flex-direction: row;
   width: 100%;
   background-color: rgb(255, 72, 0);
-  height: 2rem;
+  height: 4rem;
 }
 
 ul {
@@ -29,4 +29,18 @@ ul {
 a {
   text-decoration: none;
   color: black;
+}
+
+.navbar_avatar {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 10rem;
+  margin-left: 8px;
+}
+
+.user_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }

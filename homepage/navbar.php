@@ -12,8 +12,11 @@
                 <a <?php echo $_SERVER['SCRIPT_NAME'] === '/popularPosts.php' ? 'active' : ''; ?>" href="/popularPosts.php">Popular Posts</a>
             </li>
             <?php if (isset($_SESSION['user'])) : ?>
-                <li>
-                    <a href="/profile.php?username=<?php echo $_SESSION['user']['username']; ?>"> <?php echo $_SESSION['user']['username']; ?> </a>
+
+                <?php $user = $_SESSION['user'] ?>
+                <li class="user_container">
+                    <a style="color: blue;" href="/profile.php?username=<?php echo $_SESSION['user']['username']; ?>"> <?php echo $user['username']; ?> </a>
+                    <img class="navbar_avatar" src="<?php echo ($user['avatar'] !== null) ? "/uploads/avatars/" . $user['avatar'] : 'assets/profile_image_placeholder.png'; ?>" id="avatar-image" alt="Avatar image">
                 </li>
                 <?php if (isset($_SESSION['user'])) : ?>
                     <li>

@@ -1,40 +1,55 @@
 <?php require __DIR__ . '/homepage/header.php'; ?>
 <?php require __DIR__ . '/homepage/navbar.php'; ?>
 
+
 <?php
-
 if (isset($_SESSION['user'])) : ?>
-    <section class="index_page">
-        <div class="greeting_user_container">
+    <?php $user = $_SESSION['user']; ?>
+    <?php $userId = $user['id']; ?>
 
-            <h1 class="index_title"><?php echo $config['title']; ?></h1>
-            <?php $userId = $_SESSION['user']['id']; ?>
-            <p> Welcome, <?php echo $_SESSION['user']['first_name']; ?>!</p>
-        </div>
+<?php endif; ?>
 
-        <?php $fetchPost = fetchAllPosts($pdo);
+<section class="index_page">
+    <div class="greeting_user_container">
 
-        foreach ($fetchPost as $post) : ?>
-            <?php $postId = $post['id'];  ?>
-            <?php $userId = $_SESSION['user']['id'];  ?>
-            <?php $countComments = countComments($pdo, $postId); ?>
-            <?php $countUpvotes = countUpvotes($pdo, $postId); ?>
+        <h1 class="index_title"><?php echo $config['title']; ?></h1>
 
-            <div class="news_feed">
-                <h3 class="index_post_title"> <?php echo $post['title']; ?> </h3>
-                <p> <?php echo $post['description']; ?> </p>
-                <a href="<?php echo $post['post_url'] ?> "> <?php echo $post['post_url']; ?> </a>
-                <p> Posted by: <?php echo $post['user_id']; ?> </p>
-                <p> <?php echo $post['post_date']; ?> </p>
-                <div class="upvotes_comments">
-                    <a class="index_comments" href="comments.php?id= <?php echo $post['id']; ?> "> Comments: <?php echo $countComments; ?> </a>
-                </div>
+        <p>Welcome,
+            <?php if (isset($user)) : ?>
+                <?php echo $user['first_name']; ?>
+            <?php else : ?>
+                Guest
+            <?php endif; ?>
+            !</p>
+    </div>
 
-                <div>
-                    <form action="web/post/upvote.php" method="post">
-                        <p class="index_upvotes">Upvotes: <?php echo $countUpvotes; ?></p>
+    <?php $fetchPost = fetchAllPosts($pdo);
 
-                        <?php $upvoteUser = upvoteUser($pdo, $postId, $userId) ?>
+    foreach ($fetchPost as $post) : ?>
+
+        <?php $postId = $post['id'];  ?>
+        <?php $countComments = countComments($pdo, $postId); ?>
+        <?php $countUpvotes = countUpvotes($pdo, $postId); ?>
+
+        <?php if (isset($user)) : ?>
+            <?php $upvoteUser = upvoteUser($pdo, $postId, $userId) ?>
+        <?php endif; ?>
+
+        <div class="news_feed">
+            <h3 class="index_post_title"> <?php echo $post['title']; ?> </h3>
+            <p> <?php echo $post['description']; ?> </p>
+            <a href="<?php echo $post['post_url'] ?> "> <?php echo $post['post_url']; ?> </a>
+            <p> Posted by: <?php echo $post['user_id']; ?> </p>
+            <p> <?php echo $post['post_date']; ?> </p>
+            <div class="upvotes_comments">
+                <a class="index_comments" href="comments.php?id= <?php echo $post['id']; ?> "> Comments: <?php echo $countComments; ?> </a>
+            </div>
+
+            <div>
+                <form action="web/post/upvote.php" method="post">
+                    <p class="index_upvotes">Upvotes: <?php echo $countUpvotes; ?></p>
+
+                    <?php if (isset($_SESSION['user'])) : ?>
 
                         <?php if (is_array($upvoteUser)) : ?>
                             <input type="hidden" name="id" id="id" value="<?php echo $post['id'] ?>">
@@ -45,19 +60,16 @@ if (isset($_SESSION['user'])) : ?>
                             <button class="upvote_button" type="submit">Upvote</button>
 
                         <?php endif; ?>
-                    </form>
-                </div>
 
+
+
+                    <?php endif; ?>
+
+                </form>
             </div>
-        <?php endforeach; ?>
-
-    <?php else : ?>
-        <div class="welcome_container">
-            <h1>Welcome, please sign in.</h1>
         </div>
+    <?php endforeach; ?>
 
-    <?php endif; ?>
+</section>
 
-    </section>
-
-    <?php require __DIR__ . '/homepage/footer.php'; ?>
+<?php require __DIR__ . '/homepage/footer.php'; ?>

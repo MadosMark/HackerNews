@@ -103,3 +103,15 @@ function checkIfExists(PDOStatement $statement, string $userInput)
     $statement->execute([$userInput]);
     return $statement->fetch(PDO::FETCH_ASSOC);
 }
+
+function fetchUsernameById($pdo, $id)
+{
+    $database = 'SELECT username FROM Users WHERE id = :id';
+    $statement = $pdo->prepare($database);
+    $statement->bindParam(':id', $id);
+    $statement->execute();
+
+    $username = $statement->fetch(PDO::FETCH_ASSOC);
+
+    return $username;
+}

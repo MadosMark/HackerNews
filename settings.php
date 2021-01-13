@@ -29,17 +29,10 @@ $user = confirmUser($pdo); ?>
     <div class="settings_email_container">
         <h2 class="settings_title">Change email</h2>
         <p>Current email adress: <?php echo $user['email']; ?> </p>
-        <?php if (isset($_SESSION['successful'])) { ?>
-            <p> <?php echo $_SESSION['successful'][0];
-                unset($_SESSION['successful']); ?>
-            <?php } else if (isset($_SESSION['emailExist'])) { ?>
-            <p> <?php echo $_SESSION['emailExist'][0];
-                unset($_SESSION['emailExist']);
-            } ?> </p>
-            <form action="web/user/email.php" method="post" class="settings_new_email">
-                <input type="email" name="email" placeholder="Type in new email" required>
-                <button type="submit" class="button_settings">Save</button>
-            </form>
+        <form action="web/user/email.php" method="post" class="settings_new_email">
+            <input type="email" name="email" placeholder="Type in new email" required>
+            <button type="submit" class="button_settings">Save</button>
+        </form>
     </div>
     <div class="settings_password_container">
         <h2 class="settings_title">Change password</h2>
