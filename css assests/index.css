@@ -7,8 +7,8 @@ body {
   height: 100vh;
   margin: 0;
   padding-top: 1rem;
-  padding-left: 6rem;
-  padding-right: 6rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .index_page {
@@ -22,6 +22,7 @@ body {
   background-color: beige;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
 .news_feed {
