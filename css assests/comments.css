@@ -42,9 +42,13 @@
 
 .user_comments {
   box-sizing: border-box;
-  border: solid 1px black;
   padding: 2rem;
   width: 20rem;
+}
+
+.comment_container {
+  margin-bottom: 16px;
+  border: solid 1px black;
 }
 
 .comment_text {

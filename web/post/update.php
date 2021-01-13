@@ -8,13 +8,11 @@ $_SESSION['successful'] = [];
 $_SESSION['errors'] = [];
 
 
-
-
 if (isset($_POST['comment'], $_POST['post_id'], $_POST['post_id'])) {
     $postId = $_POST['post_id'];
     $commentId = $_POST['post_id'];
     $userId =  $_SESSION['user']['id'];
-    $comment = $_POST['comment'];
+    // $comment = $_POST['comment'];
 
 
     updateComment($pdo, $postId, $userId, $commentId, $comment);

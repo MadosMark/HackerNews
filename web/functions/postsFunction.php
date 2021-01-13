@@ -45,7 +45,6 @@ function fetchPostbyId($pdo, $postId)
 
     $post = $statement->fetch(PDO::FETCH_ASSOC);
 
-
     return $post;
 }
 

@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
-if (isset($_POST['id'], $_GET['id'])) {
-    $postId = $_POST['id'];
-    $userId = $_GET['id'];
+if (isset($_POST['post_id'], $_POST['comment_id'])) {
+    $postId = $_POST['post_id'];
+    $commentId = $_POST['comment_id'];
 
-
-    deleteComment($pdo, $postId, $userId);
+    deleteComment($pdo, $commentId);
 
     redirect('../../comments.php?id=' . $postId);
 }
