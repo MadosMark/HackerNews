@@ -33,15 +33,13 @@ function countComments($pdo, $postId)
     return $comments['COUNT(*)'];
 }
 
-function updateComment($pdo, $comment, $commentId, $userId, $postId)
+function updateComment($pdo, $comment, $postId, $commentId)
 {
-
-    $database = "UPDATE Comments SET comment = :minnyacomment WHERE comment_id = :commentId AND post_id = :postId AND user_id = :userId;";
+    $database = "UPDATE Comments SET comment = :comment WHERE post_id = :postId AND id = :commentId";
     $statement = $pdo->prepare($database);
-    $statement->bindParam(':minnyacomment', $comment);
-    $statement->bindParam(':commentId', $commentId);
+    $statement->bindParam(':comment', $comment);
     $statement->bindParam(':postId', $postId);
-    $statement->bindParam(':userId', $userId);
+    $statement->bindParam(':commentId', $commentId);
 
     $statement->execute();
 }

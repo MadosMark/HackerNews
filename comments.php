@@ -47,15 +47,12 @@ if (isset($_GET['id'])) {
                     <p><?= $userComment['comment']; ?></p>
                     <p><?= $userComment['comment_date']; ?></p>
                     <p> Commented by: <?= $userComment['user_id']; ?></p>
-
-
                     <?php if ($_SESSION['user']['id'] === $userComment['user_id']) : ?>
                         <form action="web/post/update.php?id=<?= $post['id']; ?>" method="post">
-                            <input type="text" name="comment" id="comment" placeholder="Type comment" <?php echo $userComment['comment']; ?>">
-                            <!-- <input type="hidden" name="post_id" id="post_id" value="<?php echo $post['id']; ?>"> -->
-                            <div class="">
-                                <button class="edit_comment" type="submit"> Update comment </button>
-                            </div>
+                            <input type="text" name="comment" id="comment" placeholder="Type comment">
+                            <input type="hidden" name="post_id" id="post_id" value="<?= $userComment['post_id'] ?>">
+                            <input type="hidden" name="comment_id" id="comment_id" value="<?= $userComment['id'] ?>">
+                            <button class="edit_comment" type="submit"> Update comment </button>
                         </form>
 
                         <form action="web/post/delete.php?id=<?= $post['id']; ?>" method="post">

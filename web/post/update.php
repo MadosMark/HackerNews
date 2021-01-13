@@ -8,21 +8,15 @@ $_SESSION['successful'] = [];
 $_SESSION['errors'] = [];
 
 
-if (isset($_POST['comment'], $_POST['post_id'], $_POST['post_id'])) {
+if (isset($_POST['comment'], $_POST['post_id'], $_POST['comment_id'])) {
+    $comment = $_POST['comment'];
     $postId = $_POST['post_id'];
-    $commentId = $_POST['post_id'];
-    $userId =  $_SESSION['user']['id'];
-    // $comment = $_POST['comment'];
+    $commentId = $_POST['comment_id'];
 
-
-    updateComment($pdo, $postId, $userId, $commentId, $comment);
-
-    $_SESSION['successful'][] = "Your comment has been updated";
+    updateComment($pdo, $comment, $postId, $commentId);
 
     redirect('/../comments.php?id=' . $postId);
 }
-
-
 
 
 if (isset($_POST['post_id_edit'], $_POST['user_id'], $_POST['title'], $_POST['description'], $_POST['url'])) {
