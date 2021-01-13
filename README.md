@@ -1,5 +1,7 @@
 # HackerNews
 
+Winter Project 2020 - 2021
+
 # Assignment
 
 You're going to create a Hacker News clone. Prepare a short presentation of your project which you're going to present for the entire class on January 14, 2021. Add the link to your public GitHub repository in this Google Sheet.
@@ -27,3 +29,5 @@ Below you'll find a list of user stories. This is the behavior on how the user i
 :ballot_box_with_check: As a user I'm able to comment on a post.<br>
 :ballot_box_with_check: As a user I'm able to edit my comments.<br>
 :ballot_box_with_check: As a user I'm able to delete my comments.<br>
+
+# Review
