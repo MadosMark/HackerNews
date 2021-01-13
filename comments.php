@@ -6,6 +6,7 @@
 if (isset($_GET['id'])) {
     $userId = $_SESSION['user']['id'];
 
+
     $postId = $_GET['id'];
     $postIdComment = $postId;
     $post = fetchPostbyId($pdo, $postId);
@@ -52,14 +53,11 @@ if (isset($_GET['id'])) {
 
 
                 <?php if ($_SESSION['user']['id'] === $userComment['user_id']) : ?>
-                    <form action="web/post/editComment.php" method="post">
-                        <input type="text" name="comment" id="comment" placeholder=" <?php echo $userComment['comment']; ?>">
-
-                        <!-- <input type="hidden" name="comment_id" id="comment_id" value="<?php echo $userComment['comment_id'] ?>"> -->
-
-                        <input type="hidden" name="post_id" id="post_id" value="<?php echo $post['id']; ?>">
-                        <div class="btn-wrapper">
-                            <button class="comment-btn" type="submit"> Update comment </button>
+                    <form action="web/post/update.php?id=<?= $post['id']; ?>" method="post">
+                        <input type="text" name="comment" id="comment" placeholder="Type comment" <?php echo $userComment['comment']; ?>">
+                        <!-- <input type="hidden" name="post_id" id="post_id" value="<?php echo $post['id']; ?>"> -->
+                        <div class="">
+                            <button class="edit_comment" type="submit"> Update comment </button>
                         </div>
                     </form>
 
