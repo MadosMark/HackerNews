@@ -31,11 +31,8 @@ if (isset($_POST['comment'], $_POST['post_id'])) {
 
     $statement->execute();
 
-    $_SESSION['successful'][] = "Your comment has successfully been posted!";
+
 
 
     redirect("/../comments.php?id=$postId");
-} else {
-    $_SESSION['errors'][] = "Ops, something went wrong! Try again.";
-    redirect("/index.php");
 }

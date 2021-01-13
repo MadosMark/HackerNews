@@ -33,9 +33,10 @@
 }
 
 .p_image {
-  width: 15rem;
-  height: 15rem;
-  border-radius: 10rem;
+  width: 35rem;
+  height: 35rem;
+  border-radius: 20rem;
+  margin-top: 5rem;
 }
 
 .edit_profile {
@@ -47,13 +48,13 @@
   margin: 1rem;
 }
 
+.post_bio {
+  font-size: 1.5rem;
+}
+
 .user_posts {
   font-size: 1.6rem;
   width: 100%;
-  /* margin-top: 0.1rem;
-  border: solid 1px black;
-  padding: 1rem;
-  margin-bottom: 1rem; */
 }
 
 .user_post_title {
@@ -90,6 +91,7 @@
   margin-top: 0.2rem;
   padding: 1rem;
   margin-bottom: 1rem;
+  background-color: beige;
 }
 
 .input_label {

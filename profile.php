@@ -13,7 +13,7 @@
     <div class="profile_page">
         <div class="profile_image">
             <h1 class="profile_username"><?php echo $userProfile['username']; ?> </h1>
-            <p><?php echo $userProfile['biography']; ?></p>
+            <p class="post_bio"><?php echo $userProfile['biography']; ?></p>
             <img class="p_image" src="<?php echo ($userProfile['avatar'] !== null) ? "/uploads/avatars/" . $userProfile['avatar'] : '/assets/profile_image_placeholder.png'; ?>" alt="Avatar image">
         </div>
     </div>
