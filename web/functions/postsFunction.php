@@ -48,38 +48,40 @@ function fetchPostbyId($pdo, $postId)
     return $post;
 }
 
-function updatePost($pdo, $postId, $userId, $title, $description, $url)
+function updatePost($pdo, $id, $title, $description, $url, $userId)
 {
 
-    $database = "UPDATE Posts SET title = :title,
+    $database = "UPDATE Posts
+    SET
+    title = :title,
     description = :description, 
     post_url = :url
-    WHERE id = :postId AND user_id = :userId;";
+    WHERE id = :id
+    AND user_id = :userId;";
 
     $statement = $pdo->prepare($database);
 
     $statement->bindParam(':title', $title);
     $statement->bindParam(':description', $description);
     $statement->bindParam(':url', $url);
-    $statement->bindParam(':postId', $postId);
+    $statement->bindParam(':id', $id);
     $statement->bindParam(':userId', $userId);
 
     $statement->execute();
 }
 
-function deletePost($pdo, $postId, $userId)
+function deletePost($pdo, $id, $userId)
 {
-    $statement = $pdo->prepare("DELETE FROM Posts WHERE id = :postId AND user_id = :userId;
-    DELETE FROM Comments WHERE post_id = :postId;
-    DELETE FROM Likes WHERE post_id = :postId; 
-    ");
+    $database = "DELETE FROM Posts 
+    WHERE id = :id AND user_id = :userId;
+    DELETE FROM Comments WHERE post_id = :id;
+    DELETE FROM Likes WHERE post_id = :id; 
+    ";
 
-    $statement->bindParam(':postId', $postId, PDO::PARAM_INT);
+    $statement = $pdo->prepare($database);
+
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
 
-
     $statement->execute();
-    if (!$statement) {
-        die(var_dump($pdo->errorInfo()));
-    }
 }

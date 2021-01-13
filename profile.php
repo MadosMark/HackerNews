@@ -21,58 +21,60 @@
         <a href="settings.php?username=<?php echo $_SESSION['user']['username']; ?> "><button class="edit_profile">Edit profile</button> </a>
     <?php endif; ?>
 </article>
-<h2 class="user_post_title"> Posts by: <?php echo $userProfile['username']; ?> </h2>
 
-<?php if (is_array($userPosts)) {
-    foreach ($userPosts as $userPost) :  ?>
+<section>
+    <h2 class="user_post_title"> Posts by: <?php echo $userProfile['username']; ?> </h2>
 
-        <div class="posts_container">
-            <div class="user_posts">
-                <h3 class="post_title"> <?php echo $userPost['title']; ?> </h3>
-                <p> <?php echo $userPost['description']; ?> </p>
-                <a href="<?php echo $userPost['post_url'] ?> "> <?php echo $userPost['post_url']; ?> </a>
-                <p> Posted by: <?php echo $userPost['id']; ?> </p>
-                <p> <?php echo $userPost['post_date']; ?> </p>
+    <?php if (is_array($userPosts)) {
+        foreach ($userPosts as $userPost) :  ?>
+
+            <?php $countUpvotes = countUpvotes($pdo, $userPost['id']); ?>
+
+            <div class="posts_container">
+                <div class="user_posts">
+                    <h3 class="post_title"> <?php echo $userPost['title']; ?> </h3>
+                    <p> <?php echo $userPost['description']; ?> </p>
+                    <a href="<?php echo $userPost['post_url'] ?> "> <?php echo $userPost['post_url']; ?> </a>
+                    <p> Posted by: <?php echo $_SESSION['user']['username']; ?> </p>
+                    <p> <?php echo $userPost['post_date']; ?> </p>
+                    <p> Upvotes: <?php echo $countUpvotes ?></p>
+                </div>
+
+                <div>
+                    <?php if ($profileId === $_SESSION['user']['id']) : ?>
+                        <h3 class="post_title">Edit Post</h3>
+                        <form action="/web/post/update.php" method="post">
+                            <input type="hidden" name="id" id="id" value="<?php echo $userPost['id'] ?>">
+
+                            <div class="input_label">
+                                <label for="title">Title</label>
+                                <input type="text" name="title" id="title" placeholder="<?php echo $userPost['title']; ?>" required>
+                            </div>
+
+                            <div class="input_label">
+                                <label for="description">Description</label>
+                                <input type="text" name="description" id="description" placeholder="<?php echo $userPost['description']; ?>" required>
+                            </div>
+
+                            <div class="input_label">
+                                <label for="url">Post URL</label>
+                                <input type="url" name="url" id="url" placeholder="<?php echo $userPost['post_url']; ?>" required>
+                            </div>
+
+                            <button type="submit">Update post</button>
+                        </form>
+
+                        <form action="/web/post/delete.php" method="post">
+                            <input type="hidden" name="id" id="id" value="<?php echo $userPost['id'] ?>">
+                            <button type="submit">Delete post</button>
+                        </form>
+                    <?php endif; ?>
+                </div>
             </div>
-        </div>
-        <?php if ($profileId === $_SESSION['user']['id']) : ?>
-            <h2> Edit Post :</h2>
-            <form class="form-hidden" action="/web/post/update.php" method="post">
-                <input type="hidden" name="post_id_edit" id="post_id_edit" value="<?php echo $postId ?>">
-                <div>
-                    <label for="title"> Title </label>
-                </div>
-                <input type="text" name="title" id="title" placeholder="<?php echo $userPost['title']; ?> " required>
 
-                <div>
-                    <label for="description"> Description </label>
-                </div>
-                <input type="text" name="description" id="description" placeholder="<?php echo $userPost['description']; ?>" required>
-
-                <div>
-                    <label for="url"> Url to the post </label>
-                </div>
-                <input type="url" name="url" id="url" placeholder=" <?php echo $userPost['post_url']; ?>"" required>
-                                   
-                                   
-                                    <div class=" button-wrapper">
-                <div>
-                    <button type=" submit"> Update post </button>
-                </div>
-            </form>
-
-            <form class="form-hidden" action="/web/post/delete.php" method="post">
-
-                <input type="hidden" name="post_id_delete" id="post_id_delete" value="<?php echo $postId ?>">
-
-                <div>
-                    <button type="submit"> Delete post </button>
-                </div>
-                </div>
-            </form>
-        <?php endif; ?>
-<?php endforeach;
-} ?>
+    <?php endforeach;
+    } ?>
+</section>
 </div>
 
 

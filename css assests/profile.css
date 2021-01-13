@@ -48,11 +48,12 @@
 }
 
 .user_posts {
-  margin-top: 0.1rem;
   font-size: 1.6rem;
+  width: 100%;
+  /* margin-top: 0.1rem;
   border: solid 1px black;
   padding: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1rem; */
 }
 
 .user_post_title {
@@ -63,6 +64,7 @@
 .post_title {
   font-size: 2rem;
   margin: 0;
+  margin-bottom: 1em;
 }
 
 .edit_post {
@@ -74,4 +76,23 @@
   margin-right: 0.3rem;
   width: 6rem;
   margin-bottom: 1.5rem;
+}
+
+.post_wrapper {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.posts_container {
+  display: flex;
+  border: solid 1px black;
+  margin-top: 0.2rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.input_label {
+  display: flex;
+  flex-direction: column;
 }

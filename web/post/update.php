@@ -19,17 +19,16 @@ if (isset($_POST['comment'], $_POST['post_id'], $_POST['comment_id'])) {
 }
 
 
-if (isset($_POST['post_id_edit'], $_POST['user_id'], $_POST['title'], $_POST['description'], $_POST['url'])) {
+if (isset($_POST['id'], $_POST['title'], $_POST['description'], $_POST['url'])) {
 
-    $postId = $_POST['post_id_edit'];
-    $userId = $_POST['user_id'];
+    $id = $_POST['id'];
     $title = $_POST['title'];
     $description = $_POST['description'];
     $url = $_POST['url'];
+    $userId = $_SESSION['user']['id'];
+    $username = $_SESSION['user']['username'];
 
-    updatePost($pdo, $postId, $userId, $title, $description, $url);
+    updatePost($pdo, $id, $title, $description, $url, $userId);
 
-    $_SESSION['successful'][] = "Your post has been updated";
-
-    redirect('/../comments.php?id=' . $postId);
+    redirect('/../profile.php?username=' . $username);
 }
