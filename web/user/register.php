@@ -19,7 +19,6 @@ if (isset($_POST['submit'])) {
 
     $_SESSION['errors'] = [];
 
-
     usernameExists($pdo, $username);
     if ($_SESSION['checkuser']['username'] === $username) {
 

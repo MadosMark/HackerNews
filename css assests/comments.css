@@ -8,10 +8,9 @@
 }
 
 .post_info {
-  box-sizing: border-box;
   border: solid 1px black;
   padding: 2rem;
-  width: 20rem;
+  width: 30rem;
 }
 
 .comment_title {
@@ -49,6 +48,9 @@
 .comment_container {
   margin-bottom: 16px;
   border: solid 1px black;
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
 }
 
 .comment_text {

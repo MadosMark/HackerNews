@@ -13,6 +13,7 @@ body {
 
 .index_page {
   background-color: beige;
+  height: 300vh;
 }
 
 .greeting_user_container {
@@ -22,7 +23,6 @@ body {
   background-color: beige;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 .news_feed {
@@ -55,4 +55,9 @@ body {
 
 .index_post_title {
   font-size: 1.5rem;
+}
+
+.url_link {
+  color: blue;
+  text-decoration: underline;
 }

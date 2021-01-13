@@ -12,7 +12,9 @@ if (isset($_POST['id'])) {
     $upvoteUser = upvoteUser($pdo, $postId, $userId);
 
     if (!is_array($upvoteUser)) {
-        $statement = $pdo->prepare("INSERT INTO Likes (post_id, user_id) VALUES (:postId, :userId);");
+
+        $database = ("INSERT INTO Likes (post_id, user_id) VALUES (:postId, :userId);");
+        $statement = $pdo->prepare($database);
 
         $statement->BindParam(':postId', $postId);
         $statement->BindParam(':userId', $userId);
@@ -21,7 +23,9 @@ if (isset($_POST['id'])) {
 
         redirect('../../index.php');
     } else {
-        $statement = $pdo->prepare("DELETE FROM Likes WHERE post_id = :postId AND user_id = :userId;");
+
+        $database = ("DELETE FROM Likes WHERE post_id = :postId AND user_id = :userId;");
+        $statement = $pdo->prepare($database);
 
         $statement->BindParam(':postId', $postId);
         $statement->BindParam(':userId', $userId);

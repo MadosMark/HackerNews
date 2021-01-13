@@ -21,7 +21,7 @@
         <h1 class="post_comment_title">Post</h1>
         <div class="post_info">
             <h2><?= $post['title'] ?></h2>
-            <p> <a href="<?= $post['post_url'] ?>"><?= $post['post_url'] ?> </a></p>
+            <p class="url_link"> <a href="<?= $post['post_url'] ?>"><?= $post['post_url'] ?> </a></p>
             <p><?= $post['description'] ?></p>
             <p>Posted at <?= $post['post_date'] ?></p>
             <p>Upvotes: <?php echo $countUpvotes; ?></p>

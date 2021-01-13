@@ -4,7 +4,6 @@
 <div class="signup_container">
     <h2 class="signup_title">Sign Up</h2>
     <p class="fill_out_form">Fill out this form to register an account.</p>
-
     <form action="web/user/register.php" method="post">
         <div class="signup_form">
             <label for="username"> Username: </label> <span class="username-error"> </span>
@@ -26,6 +25,5 @@
             <a href="loginPage.php">Log In here!</a>
         </div>
     </form>
-
 </div>
 <?php require __DIR__ . '/homepage/footer.php'; ?>

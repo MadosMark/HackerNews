@@ -5,6 +5,7 @@ declare(strict_types=1);
 require __DIR__ . '/../autoload.php';
 
 if (isset($_POST['current_password'], $_POST['new_password'], $_POST['confirm_password'])) {
+
     $currentPassword = $_POST['current_password'];
     $newPassword = $_POST['new_password'];
     $confirmPassword = $_POST['confirm_password'];
@@ -32,11 +33,11 @@ if (isset($_POST['current_password'], $_POST['new_password'], $_POST['confirm_pa
         }
     }
 
-    // unset($_SESSION['errors']);
 
     $hash = password_hash($newPassword, PASSWORD_DEFAULT);
 
-    $statement = $pdo->prepare('UPDATE Users SET password = ? WHERE id = ?');
+    $database = ('UPDATE Users SET password = ? WHERE id = ?');
+    $statement = $pdo->prepare($database);
 
     $statement->execute([$hash, $_SESSION['user']['id']]);
     $_SESSION['PASSWORD_SUCCESS'][] = "Password is updated!";

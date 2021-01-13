@@ -8,7 +8,6 @@ $user = confirmUser($pdo); ?>
 <div class="settings_container">
     <div class="settings_options">
         <h2 class="settings_title">Change profile picture</h2>
-
         <?php if (isset($_SESSION['avatarInvalidType'])) { ?>
             <p> <?php echo $_SESSION['avatarInvalidType'][0];
                 unset($_SESSION['avatarInvalidType']);
@@ -17,7 +16,6 @@ $user = confirmUser($pdo); ?>
             <p> <?php echo $_SESSION['avatarTooBig'][0];
                 unset($_SESSION['avatarTooBig']);
             } ?>
-
             <div class="settings_image_container">
                 <img class="settings_image" src="<?php echo ($user['avatar'] !== null) ? "/uploads/avatars/" . $user['avatar'] : 'assets/profile_image_placeholder.png'; ?>" id="avatar-image" alt="Avatar image">
                 <form action="web/user/avatar.php" method="post" enctype="multipart/form-data" class="form change-avatar__form">
@@ -43,9 +41,6 @@ $user = confirmUser($pdo); ?>
             <p> <?php echo $_SESSION['CURRENT_PASSWORD_INVALID'][0];
                 unset($_SESSION['CURRENT_PASSWORD_INVALID']);
             } ?> </p>
-
-
-
             <?php if (isset($_SESSION['PASSWORD_SHORT'])) { ?>
                 <p> <?php echo $_SESSION['PASSWORD_SHORT'][0];
                     unset($_SESSION['PASSWORD_SHORT']);
@@ -86,6 +81,4 @@ $user = confirmUser($pdo); ?>
         </form>
     </div>
 </div>
-
-
 <?php require __DIR__ . '/homepage/footer.php'; ?>

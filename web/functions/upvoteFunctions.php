@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 function countUpvotes($pdo, $postId)
 {
-    $statement = $pdo->prepare('SELECT COUNT(*) FROM Likes WHERE post_id = :postId');
+    $database = ('SELECT COUNT(*) FROM Likes WHERE post_id = :postId');
+    $statement = $pdo->prepare($database);
     $statement->bindParam(':postId', $postId, PDO::PARAM_INT);
     $statement->execute();
 
@@ -14,7 +15,8 @@ function countUpvotes($pdo, $postId)
 
 function upvoteUser($pdo, $postId, $userId)
 {
-    $statement = $pdo->prepare('SELECT * FROM Likes WHERE post_id = :postId AND user_id = :userId;');
+    $database = ('SELECT * FROM Likes WHERE post_id = :postId AND user_id = :userId;');
+    $statement = $pdo->prepare($database);
 
     $statement->bindParam(':postId', $postId);
     $statement->bindParam(':userId', $userId);
@@ -27,7 +29,7 @@ function upvoteUser($pdo, $postId, $userId)
 
 function popularUpvotes($pdo)
 {
-    $statement = $pdo->query('SELECT COUNT(Likes.post_id) AS votes, Posts.*, Users.username FROM Likes
+    $database = ('SELECT COUNT(Likes.post_id) AS votes, Posts.*, Users.username FROM Likes
     INNER JOIN Posts
     ON Posts.id = Likes.post_id
     INNER JOIN Users 
@@ -38,6 +40,8 @@ function popularUpvotes($pdo)
     LIMIT 15; 
    ');
 
+
+    $statement = $pdo->prepare($database);
     $statement->execute();
 
     $popularVotes = $statement->fetchAll(PDO::FETCH_ASSOC);

@@ -15,18 +15,14 @@ function invalidEmail($email)
 
 function usernameExists($pdo, $username)
 {
-
-    $statement = $pdo->prepare('SELECT * FROM Users WHERE username = :username;');
+    $database = ('SELECT * FROM Users WHERE username = :username;');
+    $statement = $pdo->prepare($database);
     $statement->BindParam(':username', $username, PDO::PARAM_STR);
     $statement->execute();
 
     $checkUser = $statement->fetch(PDO::FETCH_ASSOC);
 
     $_SESSION['checkuser'] = $checkUser;
-
-    if (!$statement) {
-        die(var_dump($pdo->errorInfo()));
-    }
 }
 
 
@@ -34,7 +30,9 @@ function emailExists($pdo, $email)
 {
     $_SESSION['successful'] = [];
 
-    $statement = $pdo->prepare('SELECT * FROM Users WHERE email = :email;');
+    $database = ('SELECT * FROM Users WHERE email = :email;');
+
+    $statement = $pdo->prepare($database);
     $statement->BindParam(':email', $email);
     $statement->execute();
 
@@ -79,7 +77,8 @@ function confirmUser($pdo)
 
 function fetchUser($pdo, $username)
 {
-    $statement = $pdo->prepare("SELECT id, username, email, password, avatar, biography FROM Users WHERE username = :username");
+    $database = ("SELECT id, username, email, password, avatar, biography FROM Users WHERE username = :username");
+    $statement = $pdo->prepare($database);
     $statement->BindParam(':username', $username, PDO::PARAM_STR);
     $statement->execute();
 
@@ -90,8 +89,9 @@ function fetchUser($pdo, $username)
 
 function fetchUserByUsername($pdo, $username)
 {
-    $statement = $pdo->prepare('SELECT id, first_name, last_name, avatar, biography, username
-FROM Users WHERE username = ?');
+    $database = ('SELECT id, first_name, last_name, avatar, biography, username
+    FROM Users WHERE username = ?');
+    $statement = $pdo->prepare($database);
 
     $statement->execute([$username]);
 

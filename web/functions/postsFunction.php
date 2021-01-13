@@ -6,12 +6,14 @@ function getUserPosts($pdo, $profileId)
 {
 
 
-
-    $statement = $pdo->prepare("SELECT Posts.id, title, description, post_url, post_date, user_id FROM Posts
+    $database = ("SELECT Posts.id, title, description, post_url, post_date, user_id FROM Posts
 INNER JOIN Users
 ON Posts.user_id = Users.id
 WHERE Users.id = :id
 ORDER BY Posts.id DESC");
+
+
+    $statement = $pdo->prepare($database);
 
 
     $statement->BindParam(':id', $profileId, PDO::PARAM_INT);
@@ -27,7 +29,8 @@ ORDER BY Posts.id DESC");
 function fetchAllPosts($pdo)
 {
 
-    $statement = $pdo->prepare("SELECT * FROM Posts ORDER BY Posts.post_date DESC");
+    $database = ("SELECT * FROM Posts ORDER BY Posts.post_date DESC");
+    $statement = $pdo->prepare($database);
 
     $statement->execute();
 
@@ -39,7 +42,8 @@ function fetchAllPosts($pdo)
 function fetchPostbyId($pdo, $postId)
 {
 
-    $statement = $pdo->prepare("SELECT * FROM Posts WHERE id = :postId");
+    $database = ("SELECT * FROM Posts WHERE id = :postId");
+    $statement = $pdo->prepare($database);
     $statement->bindParam(':postId', $postId);
     $statement->execute();
 
