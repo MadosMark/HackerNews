@@ -53,14 +53,17 @@ function updateComment($pdo, int $postId, int $userId, int $commentId, string $c
     $statement->execute();
 }
 
-function deleteComment($pdo, int $postId, int $userId, int $commentId)
+function deleteComment($pdo, $userid)
 {
-
-    $statement = $pdo->prepare("DELETE FROM Comments WHERE post_id = :postId AND comment_id = :commentId AND user_id = :userId;");
-
-    $statement->BindParam(':postId', $postId);
-    $statement->bindParam(':commentId', $commentId);
-    $statement->BindParam(':userId', $userId);
-
+    $statement = $pdo->prepare('DELETE FROM Comments WHERE post_id = :userid');
+    $statement->bindParam(':userid', $userid, PDO::PARAM_INT);
     $statement->execute();
 }
+
+
+// $statement = $pdo->prepare("DELETE FROM Comments WHERE post_id = :postId AND user_id = :userId;");
+
+// $statement->BindParam(':postId', $postId);
+// $statement->BindParam(':userId', $userId);
+
+// $statement->execute();

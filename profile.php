@@ -13,8 +13,8 @@
     <div class="profile_page">
         <div class="profile_image">
             <h1 class="profile_username"><?php echo $userProfile['username']; ?> </h1>
-            <textarea cols="40" rows="5" class="profile_biography"> <?php echo $userProfile['biography']; ?> </textarea>
-            <img class="p_image" src="<?php echo ($userProfile['avatar'] !== null) ? "/uploads/avatars/" . $userProfile['avatar'] : '/uploads/avatars'; ?>" alt="Avatar image">
+            <p><?php echo $userProfile['biography']; ?></p>
+            <img class="p_image" src="<?php echo ($userProfile['avatar'] !== null) ? "/uploads/avatars/" . $userProfile['avatar'] : '/assets/profile_image_placeholder.png'; ?>" alt="Avatar image">
         </div>
     </div>
     <?php if ($profileId === $_SESSION['user']['id']) : ?>

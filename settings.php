@@ -19,7 +19,7 @@ $user = confirmUser($pdo); ?>
             } ?>
 
             <div class="settings_image_container">
-                <img class="settings_image" src="<?php echo ($user['avatar'] !== null) ? "/uploads/avatars/" . $user['avatar'] : 'assets/images/avatar.png'; ?>" id="avatar-image" alt="Avatar image">
+                <img class="settings_image" src="<?php echo ($user['avatar'] !== null) ? "/uploads/avatars/" . $user['avatar'] : 'assets/profile_image_placeholder.png'; ?>" id="avatar-image" alt="Avatar image">
                 <form action="web/user/avatar.php" method="post" enctype="multipart/form-data" class="form change-avatar__form">
                     <input class="" type="file" accept="image/jpeg,image/png" name="avatar" id="avatar" required>
                     <button type="submit" class="button_settings">Upload</button>

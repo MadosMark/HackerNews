@@ -27,10 +27,20 @@ function upvoteUser($pdo, $postId, $userId)
 
 function popularUpvotes($pdo)
 {
-    $statement = $pdo->query('SELECT Posts.*, Likes.post_id FROM Posts INNER JOIN Likes ON Posts.id = Likes.post_id ORDER BY Posts.id');
+    $statement = $pdo->query('SELECT COUNT(Likes.post_id) AS votes, Posts.*, Users.username FROM Likes
+    INNER JOIN Posts
+    ON Posts.id = Likes.post_id
+    INNER JOIN Users 
+    ON Posts.user_id = Users.id
+    GROUP BY 
+    Posts.id
+    ORDER BY COUNT(1) DESC
+    LIMIT 15; 
+   ');
 
     $statement->execute();
 
-    $popularUpvotes = $statement->fetchAll(PDO::FETCH_ASSOC);
-    return $popularUpvotes;
+    $popularVotes = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $popularVotes;
 }
