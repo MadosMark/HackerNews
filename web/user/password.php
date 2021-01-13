@@ -9,7 +9,7 @@ if (isset($_POST['current_password'], $_POST['new_password'], $_POST['confirm_pa
     $newPassword = $_POST['new_password'];
     $confirmPassword = $_POST['confirm_password'];
 
-    $user = fetchUser($pdo, $_SESSION['user']['id']);
+    $user = fetchUser($pdo, $_SESSION['user']['username']);
 
     if (!password_verify($currentPassword, $user['password'])) {
         $_SESSION['CURRENT_PASSWORD_INVALID'][] = "The current password is invalid!";

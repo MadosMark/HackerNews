@@ -43,6 +43,9 @@ $user = confirmUser($pdo); ?>
             <p> <?php echo $_SESSION['CURRENT_PASSWORD_INVALID'][0];
                 unset($_SESSION['CURRENT_PASSWORD_INVALID']);
             } ?> </p>
+
+
+
             <?php if (isset($_SESSION['PASSWORD_SHORT'])) { ?>
                 <p> <?php echo $_SESSION['PASSWORD_SHORT'][0];
                     unset($_SESSION['PASSWORD_SHORT']);
@@ -53,7 +56,7 @@ $user = confirmUser($pdo); ?>
                         unset($_SESSION['PASSWORD_NOT_SAME']);
                     } ?>
                 <p>
-                <form action="web/user/password.php" method="post" class="settings_password_renewal">
+                <form style="margin-top: 1rem;" action="web/user/password.php" method="post" class="settings_password_renewal">
                     <div class="settings_password_renewal">
                         <label for="current_password">Current password:</label>
                         <input type="password" name="current_password" placeholder="Type current password" required>

@@ -79,7 +79,7 @@ function confirmUser($pdo)
 
 function fetchUser($pdo, $username)
 {
-    $statement = $pdo->prepare("SELECT id, username, email, avatar, biography FROM Users WHERE username = :username");
+    $statement = $pdo->prepare("SELECT id, username, email, password, avatar, biography FROM Users WHERE username = :username");
     $statement->BindParam(':username', $username, PDO::PARAM_STR);
     $statement->execute();
 
