@@ -12,18 +12,18 @@ Bonus points for consistent syntax including correct indentation, readable and w
 
 Below you'll find a list of user stories. This is the behavior on how the user interact with the application. You'll show all features during your presentation.
 
-:ballot_box_with_check: As a user I should be able to create an account.
-:ballot_box_with_check: As a user I should be able to login.
-:ballot_box_with_check: As a user I should be able to logout.
-:ballot_box_with_check: As a user I should be able to edit my account email, password and biography.
-:ballot_box_with_check: As a user I should be able to upload a profile avatar image.
-:ballot_box_with_check: As a user I should be able to create new posts with title, link and description.
-:ballot_box_with_check: As a user I should be able to edit my posts.
-:ballot_box_with_check: As a user I should be able to delete my posts.
-:ballot_box_with_check: As a user I'm able to view most upvoted posts.
-:ballot_box_with_check: As a user I'm able to view new posts.
-:ballot_box_with_check: As a user I should be able to upvote posts.
-:ballot_box_with_check: As a user I should be able to remove upvote from posts.
-:ballot_box_with_check: As a user I'm able to comment on a post.
-:ballot_box_with_check: As a user I'm able to edit my comments.
-:ballot_box_with_check: As a user I'm able to delete my comments.
+:ballot_box_with_check: As a user I should be able to create an account. <br>
+:ballot_box_with_check: As a user I should be able to login.<br>
+:ballot_box_with_check: As a user I should be able to logout.<br>
+:ballot_box_with_check: As a user I should be able to edit my account email, password and biography.<br>
+:ballot_box_with_check: As a user I should be able to upload a profile avatar image.<br>
+:ballot_box_with_check: As a user I should be able to create new posts with title, link and description.<br>
+:ballot_box_with_check: As a user I should be able to edit my posts.<br>
+:ballot_box_with_check: As a user I should be able to delete my posts.<br>
+:ballot_box_with_check: As a user I'm able to view most upvoted posts.<br>
+:ballot_box_with_check: As a user I'm able to view new posts.<br>
+:ballot_box_with_check: As a user I should be able to upvote posts.<br>
+:ballot_box_with_check: As a user I should be able to remove upvote from posts.<br>
+:ballot_box_with_check: As a user I'm able to comment on a post.<br>
+:ballot_box_with_check: As a user I'm able to edit my comments.<br>
+:ballot_box_with_check: As a user I'm able to delete my comments.<br>
