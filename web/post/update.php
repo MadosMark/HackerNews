@@ -35,8 +35,8 @@ if (isset($_POST['comment'], $_POST['post_id'], $_POST['comment_id'])) {
 
 if (isset($_POST['post_id_edit'], $_POST['user_id'], $_POST['title'], $_POST['description'], $_POST['url'])) {
 
-    $postId = (int)$_POST['post_id_edit'];
-    $userId = (int)$_POST['user_id'];
+    $postId = $_POST['post_id_edit'];
+    $userId = $_POST['user_id'];
     $title = $_POST['title'];
     $description = $_POST['description'];
     $url = $_POST['url'];

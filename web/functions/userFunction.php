@@ -32,6 +32,7 @@ function usernameExists($pdo, $username)
 
 function emailExists($pdo, $email)
 {
+    $_SESSION['successful'] = [];
 
     $statement = $pdo->prepare('SELECT * FROM Users WHERE email = :email;');
     $statement->BindParam(':email', $email);
@@ -46,11 +47,9 @@ function createUser($pdo, $username, $first_name, $last_name, $email, $password,
 {
     $_SESSION['successful'] = [];
 
-    $sql = "INSERT INTO Users (username, first_name, last_name, email, password) VALUES (:username, :first_name, :last_name, :email, :password);";
-    $statement = $pdo->prepare($sql);
-    if (!$statement) {
-        die(var_dump($pdo->errorInfo()));
-    }
+    $database = "INSERT INTO Users (username, first_name, last_name, email, password) VALUES (:username, :first_name, :last_name, :email, :password);";
+    $statement = $pdo->prepare($database);
+
 
     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 

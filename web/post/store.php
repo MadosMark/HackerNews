@@ -16,8 +16,8 @@ if (isset($_POST['title'], $_POST['description'], $_POST['url'])) {
     $_SESSION['successful'] = [];
     $_SESSION['errors'] = [];
 
-    $sql = "INSERT INTO Posts (title, description, post_url, post_date, user_id) VALUES (:title, :postDescription, :postUrl, :postDate, :userId);";
-    $statement = $pdo->prepare($sql);
+    $database = "INSERT INTO Posts (title, description, post_url, post_date, user_id) VALUES (:title, :postDescription, :postUrl, :postDate, :userId);";
+    $statement = $pdo->prepare($database);
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));

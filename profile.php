@@ -36,7 +36,7 @@
             </div>
         </div>
         <?php if ($profileId === $_SESSION['user']['id']) : ?>
-            <button class="edit_post">Edit post</button>
+            <h2> Edit Post :</h2>
             <form class="form-hidden" action="/web/post/update.php" method="post">
                 <input type="hidden" name="post_id_edit" id="post_id_edit" value="<?php echo $postId ?>">
                 <div>

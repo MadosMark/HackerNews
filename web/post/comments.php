@@ -15,8 +15,8 @@ if (isset($_POST['comment'], $_POST['post_id'])) {
     $_SESSION['successful'] = [];
     $_SESSION['errors'] = [];
 
-    $sql = "INSERT INTO Comments (comment, comment_date, user_id, post_id) VALUES (:comment, :commentDate, :userId, :postId);";
-    $statement = $pdo->prepare($sql);
+    $database = "INSERT INTO Comments (comment, comment_date, user_id, post_id) VALUES (:comment, :commentDate, :userId, :postId);";
+    $statement = $pdo->prepare($database);
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));

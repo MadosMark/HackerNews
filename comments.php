@@ -3,48 +3,80 @@
 
 <?php
 
-$id = $_GET['id'];
-$statement = $pdo->prepare('SELECT * FROM Posts WHERE id = :id');
-$statement->bindParam(':id', $id, PDO::PARAM_INT);
-$statement->execute();
+if (isset($_GET['id'])) {
+    $userId = $_SESSION['user']['id'];
 
-$post = $statement->fetch(PDO::FETCH_ASSOC);
-
-// select the data from the comments table
-
-$statement = $pdo->prepare('SELECT * FROM Comments WHERE post_id = :postId ORDER BY comment_date DESC');
-$statement->bindParam(':postId', $id, PDO::PARAM_INT);
-$statement->execute();
+    $postId = $_GET['id'];
+    $postIdComment = $postId;
+    $post = fetchPostbyId($pdo, $postId);
 
 
-$comments = $statement->fetchAll(PDO::FETCH_ASSOC); ?>
+    $countComments = countComments($pdo, $postId);
+    $countUpvotes = countUpvotes($pdo, $postId);
+    $userComments = fetchPostsComments($pdo, $postId);
+}
 
-<article>
-    <h2><?= $post['title'] ?></h2>
-    <p> <a href="<?= $post['post_url'] ?>"><?= $post['post_url'] ?> </a></p>
-    <p><?= $post['description'] ?></p>
-    <small>Posted at <?= $post['post_date'] ?></small>
-    <hr>
-</article>
+?>
 
-<div>
-    <div class="comments-displayed">
-        <hr>
-        <h5>Comments</h5>
-        <?php foreach ($comments as $comment) : ?>
-            <small><?= $comment['user_id']; ?> commented on</small>
-            <small><?= $comment['comment_date']; ?></small>
-            <p><?= $comment['comment']; ?></p>
-        <?php endforeach; ?>
+<div class="comment_form">
+    <h1 class="post_comment_title">Post</h1>
+    <div class="post_info">
+        <h2><?= $post['title'] ?></h2>
+        <p> <a href="<?= $post['post_url'] ?>"><?= $post['post_url'] ?> </a></p>
+        <p><?= $post['description'] ?></p>
+        <p>Posted at <?= $post['post_date'] ?></p>
+        <p> Upvotes: <?php echo $countUpvotes; ?></p>
     </div>
 
-    <div class="delete-com">
-        <form action="web/post/delete.php?id=<?= $post['id']; ?>" method="post">
-            <input type="hidden" name="id" value="<?= $comment['post_id'] ?>">
-            <button type="submit" class="btn  btn-sm btn-danger">Delete</button>
-        </form>
-    </div>
+    <div class="">
 
+
+        <?php if (isset($_SESSION['user'])) : ?>
+            <form action="web/post/postComment.php?id=<?= $post['id']; ?>" method="post">
+                <div class="comment_post">
+                    <input type="hidden" name="post_id" id="post_id" value="<?php echo $postId ?>">
+                    <label for="comment"> Comment: </label>
+                    <input type="text" name="comment" id="comment">
+                    <button type="submit" class="add_comment"> Add comment </button>
+                </div>
+            </form>
+        <?php endif; ?>
+
+        <h5 class="post_comment_title">Comments:</h5>
+
+        <div class="user_comments">
+            <?php foreach ($userComments as $userComment) : ?>
+                <p><?= $userComment['comment']; ?></p>
+                <p><?= $userComment['comment_date']; ?></p>
+                <p> Commented by: <?= $userComment['user_id']; ?></p>
+
+
+                <?php if ($_SESSION['user']['id'] === $userComment['user_id']) : ?>
+                    <form action="web/post/editComment.php" method="post">
+                        <input type="text" name="comment" id="comment" placeholder=" <?php echo $userComment['comment']; ?>">
+
+                        <!-- <input type="hidden" name="comment_id" id="comment_id" value="<?php echo $userComment['comment_id'] ?>"> -->
+
+                        <input type="hidden" name="post_id" id="post_id" value="<?php echo $post['id']; ?>">
+                        <div class="btn-wrapper">
+                            <button class="comment-btn" type="submit"> Update comment </button>
+                        </div>
+                    </form>
+
+
+
+                    <form action="web/post/delete.php?id=<?= $post['id']; ?>" method="post">
+                        <input type="hidden" name="id" value="<?= $userComment['post_id'] ?>">
+                        <button type="submit" class="delete_comment">Delete</button>
+                    </form>
+
+
+        </div>
+
+    </div>
 </div>
+<?php endif; ?>
+<?php endforeach; ?>
 
-<?php require __DIR__ . '/homepage/footer.php'; ?>
+
+<!-- <?php require __DIR__ . '/homepage/footer.php'; ?> -->

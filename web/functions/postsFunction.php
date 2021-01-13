@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-function getUserPosts($pdo, int $profileId)
+function getUserPosts($pdo, $profileId)
 {
-    $_SESSION['errors'] = [];
+
+
 
     $statement = $pdo->prepare("SELECT Posts.id, title, description, post_url, post_date, user_id FROM Posts
 INNER JOIN Users
@@ -12,22 +13,19 @@ ON Posts.user_id = Users.id
 WHERE Users.id = :id
 ORDER BY Posts.id DESC");
 
+
     $statement->BindParam(':id', $profileId, PDO::PARAM_INT);
     $statement->execute();
 
     $userPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    if (!$userPosts) {
-        return $_SESSION['errors'][] = "No posts yet.";
-    }
+
 
     return $userPosts;
 }
 
 function fetchAllPosts($pdo)
 {
-
-    $_SESSION['errors'] = [];
 
     $statement = $pdo->prepare("SELECT * FROM Posts ORDER BY Posts.post_date DESC");
 
@@ -38,9 +36,8 @@ function fetchAllPosts($pdo)
     return $fetchPosts;
 }
 
-function getPostbyId($pdo, $postId)
+function fetchPostbyId($pdo, $postId)
 {
-    $_SESSION['errors'] = [];
 
     $statement = $pdo->prepare("SELECT * FROM Posts WHERE id = :postId");
     $statement->bindParam(':postId', $postId);
@@ -48,21 +45,20 @@ function getPostbyId($pdo, $postId)
 
     $post = $statement->fetch(PDO::FETCH_ASSOC);
 
-    if (!$post) {
-        return  $_SESSION['errors'][] = "Ops, could not find any post";
-    }
 
     return $post;
 }
 
-function updatePost($pdo, int $postId, int $userId, string $title, string $description, string $url)
+function updatePost($pdo, $postId, $userId, $title, $description, $url)
 {
 
-    $sql = "UPDATE Posts SET title = :title,
+    $database = "UPDATE Posts SET title = :title,
     description = :description, 
     post_url = :url
     WHERE id = :postId AND user_id = :userId;";
-    $statement = $pdo->prepare($sql);
+
+    $statement = $pdo->prepare($database);
+
     $statement->bindParam(':title', $title);
     $statement->bindParam(':description', $description);
     $statement->bindParam(':url', $url);
@@ -72,7 +68,7 @@ function updatePost($pdo, int $postId, int $userId, string $title, string $descr
     $statement->execute();
 }
 
-function deletePost($pdo, int $postId, int $userId)
+function deletePost($pdo, $postId, $userId)
 {
     $statement = $pdo->prepare("DELETE FROM Posts WHERE id = :postId AND user_id = :userId;
     DELETE FROM Comments WHERE post_id = :postId;
