@@ -35,10 +35,7 @@ function popularUpvotes($pdo)
     INNER JOIN Users 
     ON Posts.user_id = Users.id
     GROUP BY 
-    Posts.id
-    ORDER BY COUNT(1) DESC
-    LIMIT 15; 
-   ');
+    Posts.id');
 
 
     $statement = $pdo->prepare($database);

@@ -55,13 +55,13 @@ function fetchPostbyId($pdo, $postId)
 function updatePost($pdo, $id, $title, $description, $url, $userId)
 {
 
-    $database = "UPDATE Posts
+    $database = ("UPDATE Posts
     SET
     title = :title,
     description = :description, 
     post_url = :url
     WHERE id = :id
-    AND user_id = :userId;";
+    AND user_id = :userId");
 
     $statement = $pdo->prepare($database);
 

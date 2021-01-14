@@ -1,7 +1,6 @@
 <?php require __DIR__ . '/homepage/header.php'; ?>
 <?php require __DIR__ . '/homepage/navbar.php'; ?>
 
-
 <?php
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
@@ -16,8 +15,6 @@ if (isset($_SESSION['user'])) {
     $countUpvotes = countUpvotes($pdo, $postId);
     $userComments = fetchPostsComments($pdo, $postId);
 } ?>
-
-
 
 <section class="index_page">
     <div class="greeting_user_container">
