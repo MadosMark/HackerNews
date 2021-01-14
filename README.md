@@ -31,3 +31,13 @@ Below you'll find a list of user stories. This is the behavior on how the user i
 :ballot_box_with_check: As a user I'm able to delete my comments.<br>
 
 # Review
+## Code review by Hugo Sundberg
+
+* Sorting by popular posts only shows posts with upvotes. Ignores posts whitout upvotes. Possible solution is to use 'ifnull' in SQLite. 
+* Inconsistent folder names. 'Assets' in capital. (nitpick, mine is more inconsistent)
+* Functions for database communications is great. Easily readable and reusable
+* The variable name 'database' in upvoteFunctions.php on row 8 could be confusing since it is an SQL string and not a connection to a database.  
+* Search doesnt work and breaks site when used on profile page
+* Tip: You can use '<?=' instead of '<?php echo' to save finger strenght. 
+* Site checks for password length on change but not on sign up
+* Site scroll jumps to the top on reload. Solution for this could be to save the current 'scrollY' value in 'window.sessionStorage.'
