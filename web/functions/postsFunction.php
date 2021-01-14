@@ -28,8 +28,8 @@ ORDER BY Posts.id DESC");
 
 function fetchAllPosts($pdo)
 {
+    $database = ("SELECT * FROM Posts ORDER BY datetime(post_date) DESC");
 
-    $database = ("SELECT * FROM Posts ORDER BY Posts.post_date DESC");
     $statement = $pdo->prepare($database);
 
     $statement->execute();

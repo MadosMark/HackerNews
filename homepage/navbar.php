@@ -1,4 +1,5 @@
 <body>
+
     <div class="top_nav">
         <p class="page_title">Hacker News</p>
         <ul class="nav_bar">
