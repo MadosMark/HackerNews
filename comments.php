@@ -17,6 +17,9 @@
 } ?>
 
 <section>
+
+    <?php require __DIR__ . '/homepage/messages.php'; ?>
+
     <div class="comment_form">
         <h1 class="post_comment_title">Post</h1>
         <div class="post_info">
@@ -43,17 +46,21 @@
         <div class="user_comments">
             <?php foreach ($userComments as $userComment) : ?>
 
+                <?php if ($userComment['parent_id'] > 0) : ?>
+                    <?php continue; ?>
+                <?php endif; ?>
 
                 <?php $fetchUsername = fetchUsernameById($pdo, $userComment['user_id']) ?>
                 <div class="comment_container">
                     <p><?= $userComment['comment']; ?></p>
                     <p><?= $userComment['comment_date']; ?></p>
                     <p> Commented by: <?php echo $fetchUsername['username']; ?></p>
+
                     <?php
                     if (isset($user)) : ?>
                         <?php if ($user['id'] === $userComment['user_id']) : ?>
                             <form action="web/post/update.php?id=<?= $post['id']; ?>" method="post">
-                                <input type="text" name="comment" id="comment" placeholder="Type comment">
+                                <input type="text" name="comment" id="comment" placeholder="Type comment" required>
                                 <input type="hidden" name="post_id" id="post_id" value="<?= $userComment['post_id'] ?>">
                                 <input type="hidden" name="comment_id" id="comment_id" value="<?= $userComment['id'] ?>">
                                 <button class="edit_comment" type="submit"> Update comment </button>
@@ -64,9 +71,102 @@
                                 <input type="hidden" name="comment_id" value="<?= $userComment['id'] ?>">
                                 <button type="submit" class="delete_comment">Delete</button>
                             </form>
+
                         <?php endif; ?>
                     <?php endif; ?>
+
+                    <?php if (isset($user)) : ?>
+                        <button class="reply_btn" data-id="<?= $userComment['id'] ?>"> Reply</button>
+                        <!--Reply form -->
+                        <form class="add_reply_form" action="web/post/replies.php?id=<?= $post['id'] ?>" method="post" data-id="<?= $userComment['id'] ?>">
+                            <div>
+                                <input type="hidden" name="post_id" id="post_id" value="<?= $postId ?>">
+                                <input type="hidden" name="comment_id" id="comment_id" value="<?= $userComment['id'] ?>">
+                                <input type="hidden" name="related_id" id="comment_id" value="<?= $userComment['id'] ?>">
+                                <label for="comment"> Add reply: </label>
+                                <input type="text" name="comment" id="comment" placeholder="Add reply" required>
+                                <button type="submit" name="add_reply" class="add_comment"> Add reply </button>
+                            </div>
+                        </form>
+                    <?php endif; ?>
+
                 </div>
+
+                <?php $replies = fetchCommentReplies($pdo, $postId, $userComment['id']); ?>
+                <?php foreach ($replies as $reply) : ?>
+                    <?php $fetchUsername = fetchUsernameById($pdo, $reply['user_id']) ?>
+
+                    <div class="comment_container reply">
+                        <p><?= $reply['comment']; ?></p>
+                        <p><?= $reply['comment_date']; ?></p>
+                        <p> Commented by: <?= $fetchUsername['username']; ?></p>
+                        <?php
+                        if (isset($user)) : ?>
+                            <?php if ($user['id'] === $reply['user_id']) : ?>
+                                <form action="web/post/update.php?id=<?= $post['id']; ?>" method="post">
+                                    <input type="text" name="comment" id="comment" placeholder="Type comment" required>
+                                    <input type="hidden" name="post_id" id="post_id" value="<?= $reply['post_id'] ?>">
+                                    <input type="hidden" name="comment_id" id="comment_id" value="<?= $reply['id'] ?>">
+                                    <button class="edit_comment" type="submit"> Update comment </button>
+                                </form>
+
+                                <form action="web/post/delete.php?id=<?= $post['id']; ?>" method="post">
+                                    <input type="hidden" name="post_id" value="<?= $reply['post_id'] ?>">
+                                    <input type="hidden" name="comment_id" value="<?= $reply['id'] ?>">
+                                    <button type="submit" class="delete_comment">Delete</button>
+                                </form>
+
+                            <?php endif; ?>
+                        <?php endif; ?>
+
+                        <?php if (isset($user)) : ?>
+                            <button class="reply_btn" data-id="<?= $reply['id'] ?>"> Reply</button>
+                            <!--Reply form -->
+                            <form class="add_reply_form" action="web/post/replies.php?id=<?= $post['id'] ?>" method="post" data-id="<?= $reply['id'] ?>">
+                                <div>
+                                    <input type="hidden" name="post_id" id="post_id" value="<?= $postId ?>">
+                                    <input type="hidden" name="comment_id" id="comment_id" value="<?= $reply['id'] ?>">
+                                    <input type="hidden" name="related_id" id="comment_id" value="<?= $userComment['id'] ?>">
+                                    <label for="comment"> Add reply: </label>
+                                    <input type="text" name="comment" id="comment" placeholder="Add reply" required>
+                                    <button type="submit" name="add_reply" class="add_comment"> Add reply </button>
+                                </div>
+                            </form>
+                        <?php endif; ?>
+                    </div>
+
+                    <?php $replies = fetchCommentReplies($pdo, $postId, $reply['id']);  ?>
+                    <?php foreach ($replies as $reply) : ?>
+                        <?php $fetchUsername = fetchUsernameById($pdo, $reply['user_id']); ?>
+
+                        <div class="comment_container reply reply_on_reply">
+                            <p><?= $reply['comment']; ?></p>
+                            <p><?= $reply['comment_date']; ?></p>
+                            <p> Commented by: <?= $fetchUsername['username']; ?></p>
+                            <?php
+                            if (isset($user)) : ?>
+                                <?php if ($user['id'] === $reply['user_id']) : ?>
+                                    <form action="web/post/update.php?id=<?= $post['id']; ?>" method="post">
+                                        <input type="text" name="comment" id="comment" placeholder="Type comment" required>
+                                        <input type="hidden" name="post_id" id="post_id" value="<?= $reply['post_id'] ?>">
+                                        <input type="hidden" name="comment_id" id="comment_id" value="<?= $reply['id'] ?>">
+                                        <button class="edit_comment" type="submit"> Update comment </button>
+                                    </form>
+
+                                    <form action="web/post/delete.php?id=<?= $post['id']; ?>" method="post">
+                                        <input type="hidden" name="post_id" value="<?= $reply['post_id'] ?>">
+                                        <input type="hidden" name="comment_id" value="<?= $reply['id'] ?>">
+                                        <button type="submit" class="delete_comment">Delete</button>
+                                    </form>
+
+                                <?php endif; ?>
+                            <?php endif; ?>
+
+                        </div>
+
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+
             <?php endforeach; ?>
         </div>
     </div>

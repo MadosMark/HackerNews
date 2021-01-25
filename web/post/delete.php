@@ -10,6 +10,7 @@ if (isset($_POST['post_id'], $_POST['comment_id'])) {
 
     deleteComment($pdo, $commentId);
 
+    $_SESSION['success'] = "Your comment has been deleted.";
     redirect('../../comments.php?id=' . $postId);
 }
 

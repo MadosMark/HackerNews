@@ -1,5 +1,5 @@
 .comment_form {
-  height: 100vh;
+  height: 100%;
   background-color: beige;
   display: flex;
   justify-content: center;
@@ -86,7 +86,8 @@
   align-items: center;
 }
 
-.delete_comment {
+.delete_comment,
+.reply_btn {
   margin-top: 1rem;
   font-size: 1rem;
   height: 1.5rem;
@@ -100,9 +101,33 @@
   align-items: center;
 }
 
+.reply_btn {
+  margin-top: 0rem;
+}
+
 .post_comment_title {
   font-size: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.add_reply_form {
+  display: none;
+}
+
+.show_reply_form {
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.reply {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+.reply_on_reply {
+  margin-bottom: 1rem;
+  margin-left: 2rem;
 }
