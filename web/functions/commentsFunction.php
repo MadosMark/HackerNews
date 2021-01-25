@@ -44,6 +44,7 @@ function updateComment($pdo, $comment, $postId, $commentId)
     $statement->execute();
 }
 
+
 function deleteComment($pdo, $id)
 {
     $statement = $pdo->prepare('DELETE FROM Comments WHERE id = :id OR related_id = :id OR parent_id = :id');
@@ -51,16 +52,17 @@ function deleteComment($pdo, $id)
     $statement->execute();
 }
 
+
 function fetchCommentReplies($pdo, $postId, $commentId)
 {
     $comments = fetchPostsComments($pdo, $postId);
 
-    $data = [];
+    $commentReplies = [];
     foreach ($comments as $comment) {
         if ($comment['parent_id'] === $commentId) {
 
-            $data[] = $comment;
+            $commentReplies[] = $comment;
         }
     }
-    return $data;
+    return $commentReplies;
 }

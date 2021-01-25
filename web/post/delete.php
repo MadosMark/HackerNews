@@ -8,6 +8,7 @@ if (isset($_POST['post_id'], $_POST['comment_id'])) {
     $postId = $_POST['post_id'];
     $commentId = $_POST['comment_id'];
 
+    deleteCommentLikes($pdo, (int)$commentId);
     deleteComment($pdo, $commentId);
 
     $_SESSION['success'] = "Your comment has been deleted.";
