@@ -18,6 +18,7 @@ if (isset($_SESSION['user'])) {
 
 <section class="index_page">
     <div class="greeting_user_container">
+        <?php require __DIR__ . '/homepage/messages.php'; ?>
         <h1 class="index_title"><?php echo $config['title']; ?></h1>
         <p>Welcome,
             <?php if (isset($user)) : ?>

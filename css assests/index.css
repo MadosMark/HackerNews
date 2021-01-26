@@ -4,7 +4,7 @@
 }
 
 body {
-  height: 100vh;
+  height: 100%;
   margin: 0;
   padding-top: 1rem;
   padding-left: 2rem;
@@ -13,7 +13,7 @@ body {
 
 .index_page {
   background-color: beige;
-  height: 300vh;
+  height: 100%;
 }
 
 .greeting_user_container {

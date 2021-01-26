@@ -13,6 +13,11 @@ if (isset($_POST['comment'], $_POST['post_id'], $_POST['comment_id'])) {
     $postId = $_POST['post_id'];
     $commentId = $_POST['comment_id'];
 
+    if (empty($comment)) {
+        $_SESSION['error'] = "Comment text field cannot be empty.";
+        redirect("/comments.php?id=$postId");
+    }
+
     updateComment($pdo, $comment, $postId, $commentId);
 
     redirect('/../comments.php?id=' . $postId);

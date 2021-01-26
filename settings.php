@@ -4,6 +4,8 @@ declare(strict_types=1);
 require __DIR__ . '/homepage/header.php';
 require __DIR__ . '/homepage/navbar.php';
 
+require __DIR__ . '/homepage/messages.php';
+
 $user = confirmUser($pdo); ?>
 <div class="settings_container">
     <div class="settings_options">
@@ -80,5 +82,16 @@ $user = confirmUser($pdo); ?>
         </form>
         </form>
     </div>
+
+
+    <div class="delete_account_container">
+        <h3>Delete Account?</h3>
+        <form action="" class="delete_form" method="post">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password" required>
+            <button type="submit" class="button_settings delete_account">Delete Account</button>
+        </form>
+    </div>
+
 </div>
 <?php require __DIR__ . '/homepage/footer.php'; ?>

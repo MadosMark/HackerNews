@@ -6,7 +6,7 @@ function fetchPostsComments($pdo, $postId)
 {
     $_SESSION['errors'] = [];
 
-    $statement = $pdo->prepare("SELECT Comments.*, Users.username 
+    $statement = $pdo->prepare("SELECT Comments.*, Users.username
     FROM Comments
     INNER JOIN Users
     ON Comments.user_id = Users.id
@@ -44,9 +44,50 @@ function updateComment($pdo, $comment, $postId, $commentId)
     $statement->execute();
 }
 
-function deleteComment($pdo, $id)
+
+function deleteCommentAndAllChildren($pdo, $id)
 {
-    $statement = $pdo->prepare('DELETE FROM Comments WHERE id = :id');
+    $statement = $pdo->prepare('DELETE FROM Comments WHERE id = :id OR related_id = :id OR parent_id = :id');
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->execute();
+}
+
+/*
+function deleteCommentReplies($pdo, $id)
+{
+    $statement = $pdo->prepare('DELETE FROM Comments WHERE id = :id OR related_id = :id OR parent_id = :id');
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+}
+*/
+
+function deleteCommentLikes(PDO $pdo, $id): void
+{
+    $statement = $pdo->prepare('SELECT * FROM Comments WHERE id = :id OR related_id = :id OR parent_id = :id');
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+    $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($comments as $comment) {
+        $commentId = $comment['id'];
+
+        $statement = $pdo->prepare('DELETE FROM Likes_on_comments WHERE comment_id = :commentId');
+        $statement->bindParam(':commentId', $commentId, PDO::PARAM_INT);
+        $statement->execute();
+    }
+}
+
+
+function fetchCommentReplies($pdo, $postId, $commentId)
+{
+    $comments = fetchPostsComments($pdo, $postId);
+
+    $commentReplies = [];
+    foreach ($comments as $comment) {
+        if ($comment['parent_id'] === $commentId) {
+
+            $commentReplies[] = $comment;
+        }
+    }
+    return $commentReplies;
 }

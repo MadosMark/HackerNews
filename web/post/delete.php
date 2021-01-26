@@ -8,8 +8,10 @@ if (isset($_POST['post_id'], $_POST['comment_id'])) {
     $postId = $_POST['post_id'];
     $commentId = $_POST['comment_id'];
 
-    deleteComment($pdo, $commentId);
+    deleteCommentLikes($pdo, (int)$commentId);
+    deleteCommentAndAllChildren($pdo, $commentId);
 
+    $_SESSION['success'] = "Your comment has been deleted.";
     redirect('../../comments.php?id=' . $postId);
 }
 
@@ -18,7 +20,7 @@ if (isset($_POST['id'])) {
     $userId = $_SESSION['user']['id'];
     $username = $_SESSION['user']['username'];
 
-    deletePost($pdo, $postId, $userId);
+    deletePostAndAlldataConected($pdo, $postId, $userId);
 
     redirect('/../../profile.php?username=' . $username);
 }

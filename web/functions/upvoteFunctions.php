@@ -32,9 +32,9 @@ function popularUpvotes($pdo)
     $database = ('SELECT COUNT(Likes.post_id) AS votes, Posts.*, Users.username FROM Likes
     INNER JOIN Posts
     ON Posts.id = Likes.post_id
-    INNER JOIN Users 
+    INNER JOIN Users
     ON Posts.user_id = Users.id
-    GROUP BY 
+    GROUP BY
     Posts.id');
 
 
@@ -44,4 +44,34 @@ function popularUpvotes($pdo)
     $popularVotes = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     return $popularVotes;
+}
+
+//Upvote functions for comments
+function userHasUpvoteComment(PDO $pdo, int $commentId, int $userId): bool
+{
+    $database = ('SELECT * FROM Likes_on_comments WHERE comment_id = :commentId AND user_id = :userId;');
+    $statement = $pdo->prepare($database);
+
+    $statement->bindParam(':commentId', $commentId);
+    $statement->bindParam(':userId', $userId);
+
+    $statement->execute();
+    $upvoteFromUserExist = $statement->fetch(PDO::FETCH_ASSOC);
+
+    if ($upvoteFromUserExist) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function countUpvotesOnComment(PDO $pdo, int $commentId): string
+{
+    $database = ('SELECT COUNT(*) FROM Likes_on_comments WHERE comment_id = :commentId');
+    $statement = $pdo->prepare($database);
+    $statement->bindParam(':commentId', $commentId, PDO::PARAM_INT);
+    $statement->execute();
+
+    $upvotes = $statement->fetch(PDO::FETCH_ASSOC);
+    return $upvotes['COUNT(*)'];
 }

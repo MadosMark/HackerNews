@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 130vh;
+  height: 100%;
 }
 
 .settings_title {
@@ -21,6 +21,10 @@
   margin-right: 0.3rem;
   width: 6rem;
   margin: 1rem;
+}
+
+.delete_account {
+  width: 9rem;
 }
 
 .settings_image {
@@ -70,9 +74,15 @@
   flex-direction: column;
 }
 
-.settings_biography_buttons {
+.settings_biography_buttons,
+.delete_account_container,
+.delete_account_container form {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.delete_account_container {
+  margin: 1rem 0 1rem 0;
 }
