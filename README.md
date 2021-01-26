@@ -30,6 +30,11 @@ Below you'll find a list of user stories. This is the behavior on how the user i
 :ballot_box_with_check: As a user I'm able to edit my comments.<br>
 :ballot_box_with_check: As a user I'm able to delete my comments.<br>
 
+## Extra features [View pull request](https://github.com/MadosMark/HackerNews/pull/2)
+- As a user I'm able to reply to comments. [View commit](https://github.com/MadosMark/HackerNews/pull/2/commits/d06b4cadf98b5e01245d2a60a47161ae537cb19b)
+- As a user I'm able to upvote and remove upvote on comments. [View commit](https://github.com/MadosMark/HackerNews/pull/2/commits/f4b034136008f6c4dfbb32c25fecd8c7ac149430)
+- As a user I'm able to delete my account along with all posts, upvotes and comments. [View commit](https://github.com/MadosMark/HackerNews/pull/2/commits/5d690b2e8c767616569df48e123c535b93007a6c)
+
 # Review
 ## Code review by Hugo Sundberg
 
