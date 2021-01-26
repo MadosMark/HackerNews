@@ -16,7 +16,7 @@
     $userComments = fetchPostsComments($pdo, $postId);
 } ?>
 
-<section>
+<section class="comments_wrapper">
     <?php require __DIR__ . '/homepage/messages.php'; ?>
     <div class="comment_form">
         <h1 class="post_comment_title">Post</h1>

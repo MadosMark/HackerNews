@@ -28,3 +28,20 @@ openReplyBtns.forEach((openReplyBtn) => {
 })
 
 
+
+const deleteAccountBtn = document.querySelector('.delete_account');
+const deleteAccountForm = document.querySelector('.delete_form');
+
+if(deleteAccountBtn){
+  deleteAccountBtn.addEventListener("click", () => {
+  const confirmed = window.confirm('Are you sure you want to delete your Hacker News account permanently?');
+
+  if(confirmed){
+    deleteAccountForm.action = "web/user/deleteAccount.php";
+  }
+  else{
+    deleteAccountForm.action = "settings.php";
+  }
+})
+}
+

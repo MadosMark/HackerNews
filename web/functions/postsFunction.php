@@ -58,7 +58,7 @@ function updatePost($pdo, $id, $title, $description, $url, $userId)
     $database = ("UPDATE Posts
     SET
     title = :title,
-    description = :description, 
+    description = :description,
     post_url = :url
     WHERE id = :id
     AND user_id = :userId");
@@ -74,12 +74,13 @@ function updatePost($pdo, $id, $title, $description, $url, $userId)
     $statement->execute();
 }
 
+/*
 function deletePost($pdo, $id, $userId)
 {
-    $database = "DELETE FROM Posts 
+    $database = "DELETE FROM Posts
     WHERE id = :id AND user_id = :userId;
     DELETE FROM Comments WHERE post_id = :id;
-    DELETE FROM Likes WHERE post_id = :id; 
+    DELETE FROM Likes WHERE post_id = :id;
     ";
 
     $statement = $pdo->prepare($database);
@@ -87,5 +88,32 @@ function deletePost($pdo, $id, $userId)
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
 
+    $statement->execute();
+}
+*/
+
+function deletePostAndAlldataConected(PDO $pdo, string $postId, int $userId): void
+{
+    $comments = fetchPostsComments($pdo, $postId);
+
+    foreach ($comments as $comment) {
+        $commentId = $comment['id'];
+        deleteCommentLikes($pdo, (int)$commentId);
+    }
+
+    $database = "DELETE FROM Comments WHERE post_id = :id";
+    $statement = $pdo->prepare($database);
+    $statement->bindParam(':id', $postId, PDO::PARAM_INT);
+    $statement->execute();
+
+    $database = "DELETE FROM Likes WHERE post_id = :id";
+    $statement = $pdo->prepare($database);
+    $statement->bindParam(':id', $postId, PDO::PARAM_INT);
+    $statement->execute();
+
+    $database = "DELETE FROM Posts WHERE id = :id AND user_id = :userId";
+    $statement = $pdo->prepare($database);
+    $statement->bindParam(':id', $postId, PDO::PARAM_INT);
+    $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
     $statement->execute();
 }

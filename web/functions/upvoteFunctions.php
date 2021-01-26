@@ -75,19 +75,3 @@ function countUpvotesOnComment(PDO $pdo, int $commentId): string
     $upvotes = $statement->fetch(PDO::FETCH_ASSOC);
     return $upvotes['COUNT(*)'];
 }
-
-function deleteCommentLikes(PDO $pdo, int $id): void
-{
-    $statement = $pdo->prepare('SELECT * FROM Comments WHERE id = :id OR related_id = :id OR parent_id = :id');
-    $statement->bindParam(':id', $id, PDO::PARAM_INT);
-    $statement->execute();
-    $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach ($comments as $comment) {
-        $commentId = $comment['id'];
-
-        $statement = $pdo->prepare('DELETE FROM Likes_on_comments WHERE comment_id = :commentId');
-        $statement->bindParam(':commentId', $commentId, PDO::PARAM_INT);
-        $statement->execute();
-    }
-}

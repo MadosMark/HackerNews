@@ -43,6 +43,7 @@
   box-sizing: border-box;
   padding: 2rem;
   width: 20rem;
+  height: 100%;
 }
 
 .comment_container {
@@ -130,4 +131,10 @@
 .reply_on_reply {
   margin-bottom: 1rem;
   margin-left: 2rem;
+}
+
+.comments_wrapper {
+  height: 100%;
+  min-height: 100vh;
+  background-color: beige;
 }
