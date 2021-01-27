@@ -20,7 +20,7 @@ if (isset($_POST['id'])) {
     $userId = $_SESSION['user']['id'];
     $username = $_SESSION['user']['username'];
 
-    deletePostAndAlldataConected($pdo, $postId, $userId);
+    deletePostAndAlldataConected($pdo, $postId, (int)$userId);
 
     redirect('/../../profile.php?username=' . $username);
 }
